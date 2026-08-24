@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Struktur Ayat Bahasa Melayu — โครงสร้างประโยคภาษามลายู</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nila:#16223F; --nila-soft:#33456F; --nila-wash:#E7EAF3;
+  --songket:#A9741A; --songket-wash:#F5EAD3;
+  --jade:#0F6154; --jade-wash:#DFEDE9;
+  --kirmizi:#8E3626; --kirmizi-wash:#F6E4DF;
+  --paper:#F4F2EC; --card:#FFFFFF;
+  --ink:#1A1A18; --muted:#6C6B64; --line:#DDDACF;
+  --r:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:'IBM Plex Sans Thai',system-ui,sans-serif;
+  font-size:17px; line-height:1.7;
+  display:flex; flex-direction:column; min-height:100vh;
+}
+em,.my{font-family:'IBM Plex Serif',serif; font-style:italic}
+.my{color:var(--nila)}
+b,strong{font-weight:600}
+
+header{background:var(--nila); color:#EDEBE4; padding:14px 24px 0}
+.hd{display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; max-width:1080px; margin:0 auto}
+.hd h1{font-family:'Noto Serif Thai',serif; font-size:19px; font-weight:500; letter-spacing:.01em}
+.hd h1 span{color:#C9A24B; font-family:'IBM Plex Serif',serif; font-style:italic}
+.hd .meta{font-size:13px; color:#A7AEC2}
+.band{height:9px; margin-top:12px; background:#0E1729; position:relative; overflow:hidden}
+.band i{position:absolute; inset:0 100% 0 0; transition:right .35s ease;
+  background:repeating-linear-gradient(90deg,#C9A24B 0 7px,#8E6417 7px 10px,#C9A24B 10px 13px,#0E1729 13px 17px)}
+
+main{flex:1; display:flex; justify-content:center; padding:26px 20px 12px}
+.wrap{width:100%; max-width:1080px}
+.slide{display:none; animation:in .28s ease}
+.slide.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide{animation:none}.band i{transition:none}}
+
+.eyebrow{font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--songket); font-weight:600; margin-bottom:6px}
+h2{font-family:'Noto Serif Thai',serif; font-size:29px; font-weight:600; line-height:1.35; margin-bottom:4px}
+h2 .ml{font-family:'IBM Plex Serif',serif; font-style:italic; font-weight:400; color:var(--nila-soft)}
+.lede{color:var(--muted); font-size:16px; margin-bottom:20px; max-width:70ch}
+h3{font-family:'Noto Serif Thai',serif; font-size:19px; font-weight:600; margin:20px 0 8px}
+
+.card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px 20px}
+.grid{display:grid; gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+
+.tag{display:inline-block; font-size:12px; font-weight:600; padding:2px 9px; border-radius:20px; letter-spacing:.02em}
+.t-s{background:var(--nila-wash); color:var(--nila)}
+.t-p{background:var(--jade-wash); color:var(--jade)}
+.t-o{background:var(--kirmizi-wash); color:var(--kirmizi)}
+.t-k{background:var(--songket-wash); color:var(--songket)}
+
+table{width:100%; border-collapse:collapse; font-size:15.5px; background:var(--card)}
+caption{text-align:left; font-size:13px; color:var(--muted); padding-bottom:6px}
+th{background:var(--nila); color:#EDEBE4; font-weight:500; text-align:left; padding:9px 12px; font-size:14px}
+td{padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+tbody tr:nth-child(even) td{background:#FAF9F5}
+.tw{overflow-x:auto; border:1px solid var(--line); border-radius:var(--r)}
+
+.strip{display:flex; flex-wrap:wrap; gap:8px; align-items:stretch; margin:6px 0}
+.seg{border-radius:var(--r); padding:10px 14px; border:1px solid transparent; flex:0 1 auto}
+.seg .w{font-family:'IBM Plex Serif',serif; font-style:italic; font-size:17px; display:block}
+.seg .r{font-size:12px; font-weight:600; letter-spacing:.02em; opacity:.85}
+.s-s{background:var(--nila-wash); border-color:#C3CBE0; color:var(--nila)}
+.s-p{background:var(--jade-wash); border-color:#B6D4CC; color:var(--jade)}
+.s-o{background:var(--kirmizi-wash); border-color:#E3C3BA; color:var(--kirmizi)}
+.s-k{background:var(--songket-wash); border-color:#E2CFA4; color:var(--songket)}
+
+.note{border-left:3px solid var(--songket); background:var(--songket-wash); padding:12px 16px; border-radius:0 var(--r) var(--r) 0; font-size:15.5px}
+ul.tight{margin:6px 0 0 20px} ul.tight li{margin-bottom:4px}
+.cols2{columns:2; column-gap:28px} .cols2 li{break-inside:avoid}
+@media(max-width:640px){.cols2{columns:1}}
+
+.cover{text-align:center; padding:5vh 0 0}
+.toc{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); margin-top:34px}
+.tochd{font-family:'Noto Serif Thai',serif; font-size:17px; font-weight:600; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:9px}
+.toclist{margin:0 0 0 22px; font-size:15.5px; line-height:1.85}
+.toclist li{padding-left:4px}
+.toclist li::marker{color:var(--songket); font-family:'IBM Plex Serif',serif}
+.toclist small{color:var(--muted); font-size:13px}
+.tocnote{margin-top:12px; padding-top:12px; border-top:1px solid var(--line); font-size:14.5px; color:var(--muted)}
+.tochint{text-align:center; margin-top:22px; font-size:14px; color:var(--muted)}
+.cover h2{font-size:52px; margin:16px 0 8px}
+.cover .sub{font-size:21px; color:var(--nila-soft); font-family:'Noto Serif Thai',serif}
+.cover .rule{width:180px; height:7px; margin:28px auto;
+  background:repeating-linear-gradient(90deg,#A9741A 0 7px,#16223F 7px 10px,#A9741A 10px 13px,transparent 13px 17px)}
+.cover-hero{padding-top:9vh}
+.cover-green{background:linear-gradient(165deg, var(--jade) 0%, #0B4A40 100%); color:#EFF6F3;
+  border-radius:18px; padding:6vh 24px 5vh; margin:0 auto; max-width:640px;
+  box-shadow:0 18px 40px -20px rgba(15,97,84,0.55)}
+.cover-green h2{color:#FBF9F1}
+.cover-green .sub{color:#CFE6DE}
+.cover-green .cstat{color:#CFE6DE}
+.cover-green .cstat b{color:#F5D98B}
+.cover-green .cstat + .cstat{border-left:1px solid rgba(239,246,243,0.25)}
+.cover-frame{height:8px; max-width:380px; margin:0 auto; border-radius:2px;
+  background:repeating-linear-gradient(90deg,#F5D98B 0 7px,#0B4A40 7px 10px,#F5D98B 10px 13px,transparent 13px 17px)}
+.cover-stats{display:flex; justify-content:center; align-items:center; gap:0; margin:34px 0 6px; flex-wrap:wrap}
+.cstat{font-size:14px; color:var(--nila-soft); padding:0 18px; position:relative}
+.cstat b{display:block; font-family:'IBM Plex Serif',serif; font-style:italic; font-size:22px; color:var(--nila); margin-bottom:2px}
+.cstat + .cstat{border-left:1px solid var(--line)}
+.cover-frame-bottom{margin-top:40px}
+
+.palette{display:flex; flex-wrap:wrap; gap:7px; margin:0 0 12px 36px}
+.role{font:inherit; font-size:13.5px; padding:5px 14px; border-radius:20px; border:1px solid var(--line); background:#FCFBF8; cursor:pointer}
+.role:hover:not(:disabled){border-color:var(--nila-soft)}
+.role.on{background:var(--nila); color:#EDEBE4; border-color:var(--nila)}
+.role:disabled{opacity:.32; cursor:default}
+.role:focus-visible{outline:2px solid var(--songket); outline-offset:2px}
+.segs{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 12px 36px}
+.sg{font:inherit; text-align:center; padding:8px 15px; border-radius:8px; border:1px solid var(--line); background:#FCFBF8; cursor:pointer; min-width:74px}
+.sg:hover:not(:disabled){border-color:var(--nila-soft)}
+.sg:disabled{cursor:default}
+.sg:focus-visible{outline:2px solid var(--nila-soft); outline-offset:2px}
+.sg .sw{font-family:'IBM Plex Serif',serif; font-style:italic; font-size:16px; display:block; color:var(--nila)}
+.sg .sr{font-size:11.5px; font-weight:600; display:block; margin-top:3px; color:#A9A79D; min-height:16px}
+.sg.a-S{background:var(--nila-wash); border-color:#C3CBE0} .sg.a-S .sr{color:var(--nila)}
+.sg.a-P{background:var(--jade-wash); border-color:#B6D4CC} .sg.a-P .sr{color:var(--jade)}
+.sg.a-O{background:var(--kirmizi-wash); border-color:#E3C3BA} .sg.a-O .sr{color:var(--kirmizi)}
+.sg.a-L{background:var(--songket-wash); border-color:#E2CFA4} .sg.a-L .sr{color:var(--songket)}
+.sg.a-K{background:#EEEDE6; border-color:#CFCCC0} .sg.a-K .sr{color:#5C5A52}
+.sg.ok{box-shadow:inset 0 0 0 2px var(--jade)}
+.sg.no{box-shadow:inset 0 0 0 2px var(--kirmizi)}
+.fillrow{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-left:36px}
+input.ans{font:inherit; font-size:15.5px; padding:8px 12px; border:1px solid var(--line); border-radius:8px; background:#FCFBF8; min-width:240px; flex:1}
+input.ans:focus-visible{outline:2px solid var(--nila-soft); outline-offset:1px}
+input.ans.right{border-color:var(--jade); background:var(--jade-wash); color:var(--jade)}
+input.ans.wrong{border-color:var(--kirmizi); background:var(--kirmizi-wash); color:var(--kirmizi)}
+button.chk{font:inherit; font-size:14.5px; padding:8px 16px; border-radius:8px; border:1px solid var(--nila); background:var(--nila); color:#EDEBE4; cursor:pointer}
+button.chk.alt{background:transparent; color:var(--nila)}
+button.chk:disabled{opacity:.32; cursor:default}
+button.chk:focus-visible{outline:2px solid var(--songket); outline-offset:2px}
+.err{margin:7px 0 0 36px; font-size:13.5px; color:var(--kirmizi); display:none}
+.err.show{display:block}
+.chips{display:flex; flex-wrap:wrap; gap:7px; margin:0 0 12px 36px}
+.chip{font-family:'IBM Plex Serif',serif; font-style:italic; font-size:15.5px; padding:6px 14px; border-radius:20px;
+  border:1px solid var(--line); background:#FCFBF8; cursor:pointer; color:var(--nila)}
+.chip:hover:not(:disabled){border-color:var(--nila-soft); background:#F3F5FA}
+.chip:disabled{opacity:.28; cursor:default}
+.chip:focus-visible{outline:2px solid var(--nila-soft); outline-offset:2px}
+.line{margin:0 0 12px 36px; min-height:44px; border-bottom:2px solid var(--line); padding:9px 4px;
+  font-family:'IBM Plex Serif',serif; font-style:italic; font-size:17px; color:var(--nila)}
+.line.blank{color:var(--muted); font-style:normal; font-family:inherit; font-size:14.5px}
+.line.right{border-color:var(--jade)}
+.line.wrong{border-color:var(--kirmizi)}
+.hintth{margin:0 0 10px 36px; font-size:14.5px; color:var(--muted)}
+.lblwrap{display:flex; flex-wrap:wrap; gap:10px; margin:0 0 12px 36px}
+.lbl{display:flex; flex-direction:column; gap:7px; background:#FCFBF8; border:1px solid var(--line);
+  border-radius:8px; padding:10px 12px; min-width:158px}
+.lbl.right{border-color:var(--jade); background:var(--jade-wash)}
+.lbl.wrong{border-color:var(--kirmizi); background:var(--kirmizi-wash)}
+.lw{font-family:'IBM Plex Serif',serif; font-style:italic; font-size:16.5px; color:var(--nila)}
+.sent{margin:0 0 12px 36px; font-family:'IBM Plex Serif',serif; font-style:italic; font-size:16.5px; color:var(--nila)}
+.qbox{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:16px 18px; margin-bottom:14px}
+.qh{display:flex; gap:10px; align-items:baseline; margin-bottom:10px}
+.qn{font-family:'IBM Plex Serif',serif; font-size:15px; color:var(--songket); font-weight:500; min-width:26px}
+.qt{font-size:16.5px}
+.opts{display:grid; gap:7px; margin-left:36px}
+.opt{text-align:left; font:inherit; font-size:15.5px; background:#FCFBF8; border:1px solid var(--line);
+  border-radius:8px; padding:8px 12px; cursor:pointer; transition:border-color .15s,background .15s}
+.opt:hover:not(:disabled){border-color:var(--nila-soft); background:#F3F5FA}
+.opt:focus-visible{outline:2px solid var(--nila-soft); outline-offset:2px}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--jade-wash); border-color:var(--jade); color:var(--jade); font-weight:500}
+.opt.wrong{background:var(--kirmizi-wash); border-color:var(--kirmizi); color:var(--kirmizi)}
+.fb{margin:12px 0 0 36px; padding:12px 15px; border-radius:var(--r); background:#FAF9F5;
+  border:1px solid var(--line); font-size:14.5px; color:#4A4943; display:none}
+.fb.show{display:block}
+.fb b{color:var(--nila); font-weight:600; margin-right:5px}
+.fbh{font-size:15px; font-weight:600; display:flex; align-items:center; flex-wrap:wrap; gap:8px;
+  padding-bottom:9px; margin-bottom:9px; border-bottom:1px solid var(--line)}
+.fbh .dot{width:9px; height:9px; border-radius:50%; display:inline-block}
+.fbh.good{color:var(--jade)} .fbh.good .dot{background:var(--jade)}
+.fbh.bad{color:var(--kirmizi)} .fbh.bad .dot{background:var(--kirmizi)}
+.fbh .yours{font-weight:400; font-size:13.5px; color:var(--muted)}
+.fbl{margin-bottom:7px; line-height:1.72}
+.fbl:last-child{margin-bottom:0}
+.fbl.tip{padding-top:8px; border-top:1px dashed var(--line); color:#5C5A52}
+.fbl.tip b{color:var(--songket)}
+.fb .sol{font-weight:500; color:var(--nila)}
+.tipcard{background:var(--songket-wash); border-left:3px solid var(--songket); border-radius:0 var(--r) var(--r) 0;
+  padding:13px 17px; margin-bottom:22px}
+.tipcard .thd{font-family:'Noto Serif Thai',serif; font-size:15px; font-weight:600; color:var(--songket); margin-bottom:6px}
+.tipcard ul{margin:0 0 0 19px; font-size:15px; line-height:1.72; color:#5A5348}
+.tipcard li{margin-bottom:3px}
+.tipcard li:last-child{margin-bottom:0}
+.settool{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  margin-top:18px; padding-top:15px; border-top:1px solid var(--line)}
+.settool .stat{font-size:14.5px; color:var(--muted)}
+.settool .stat b{color:var(--nila); font-weight:600}
+button.clr{font:inherit; font-size:14.5px; padding:8px 18px; border-radius:22px;
+  border:1px solid var(--nila); background:transparent; color:var(--nila); cursor:pointer}
+button.clr:hover:not(:disabled){background:var(--nila-wash)}
+button.clr:disabled{opacity:.32; cursor:default}
+button.clr:focus-visible{outline:2px solid var(--songket); outline-offset:2px}
+.brief{background:var(--nila-wash); border-left:3px solid var(--nila); border-radius:0 var(--r) var(--r) 0;
+  padding:13px 17px; margin-bottom:20px}
+.brief .bhd{font-family:'Noto Serif Thai',serif; font-size:15px; font-weight:600; color:var(--nila); margin-bottom:6px}
+.brief ul{margin:0 0 0 19px; font-size:15px; line-height:1.72}
+.brief li{margin-bottom:3px}
+.brief li:last-child{margin-bottom:0}
+
+.score{background:var(--nila); color:#EDEBE4; border-radius:var(--r); padding:26px; text-align:center}
+.score .n{font-family:'IBM Plex Serif',serif; font-size:56px; line-height:1; color:#C9A24B}
+.score .l{font-size:15px; color:#A7AEC2; margin-top:6px}
+.score .msg{margin-top:14px; font-size:16px}
+.endnav{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:24px}
+
+footer{border-top:1px solid var(--line); background:var(--card); padding:12px 20px}
+.ft{max-width:1080px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:14px}
+button.nav{font:inherit; font-size:15px; padding:8px 18px; border-radius:22px; border:1px solid var(--nila);
+  background:var(--nila); color:#EDEBE4; cursor:pointer; transition:opacity .15s}
+button.nav.ghost{background:transparent; color:var(--nila)}
+button.nav:disabled{opacity:.32; cursor:default}
+button.nav:focus-visible{outline:2px solid var(--songket); outline-offset:2px}
+.dots{display:flex; gap:5px; flex-wrap:wrap; justify-content:center}
+.dot{width:9px; height:9px; border-radius:50%; border:none; padding:0; background:var(--line); cursor:pointer}
+.dot.on{background:var(--songket)}
+.dot.ex{background:#C9C6BA; border-radius:2px}
+.dot.ex.on{background:var(--kirmizi)}
+.dot:focus-visible{outline:2px solid var(--nila-soft); outline-offset:2px}
+.hint{font-size:12.5px; color:var(--muted)}
+@media(max-width:640px){.hint{display:none} h2{font-size:24px} .cover h2{font-size:32px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hd">
+    <h1><span>Struktur Ayat</span> — โครงสร้างประโยคภาษามลายู</h1>
+    <div class="meta"><span id="pos">1</span> / <span id="tot">28</span></div>
+  </div>
+  <div class="band"><i id="bar"></i></div>
+</header>
+
+<main><div class="wrap" id="deck">
+
+<section class="slide on">
+  <div class="cover cover-hero cover-green">
+    <div class="cover-frame"></div>
+    <h2>Struktur Ayat</h2>
+    <div class="sub">โครงสร้างประโยคภาษามลายู</div>
+    <div class="rule"></div>
+    <div class="cover-stats">
+      <span class="cstat"><b>17</b>หน่วยเนื้อหา</span>
+      <span class="cstat"><b>63</b>แบบฝึกหัด</span>
+      <span class="cstat"><b>29</b>หน้า</span>
+    </div>
+    <div class="cover-frame cover-frame-bottom"></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">สารบัญ</div>
+  <h2><span class="ml">Kandungan</span> สารบัญเอกสาร</h2>
+  <p class="lede">แบ่งเป็นสองส่วน ส่วนเนื้อหาสรุปหลักไวยากรณ์ และส่วนแบบฝึกหัดพร้อมเฉลยทันทีเมื่อตรวจคำตอบ</p>
+  <div class="toc">
+    <div class="card">
+      <div class="tochd"><span class="tag t-s">หน้า 1–17</span> เนื้อหา</div>
+      <ol class="toclist">
+        <li>หน้าปก</li>
+        <li>สารบัญ</li>
+        <li>ภาพรวม ประโยคหนึ่งประโยคมีอะไรบ้าง</li>
+        <li><span class="my">Subjek</span> ภาคประธาน</li>
+        <li><span class="my">Predikat</span> ภาคแสดง</li>
+        <li>ประธานกับภาคแสดงเข้าคู่กัน</li>
+        <li>หน่วยเสริม 5 ชนิด</li>
+        <li><span class="my">Objek</span> กรรมตรงและกรรมรอง</li>
+        <li><span class="my">Inti</span> คำหลักในวลีสี่ชนิด</li>
+        <li><span class="my">Penerang nama</span> คำขยายที่เป็นคำนาม 13 ชนิด</li>
+        <li><span class="my">Penerang bukan nama</span> คำขยายที่ไม่ใช่คำนาม 6 ชนิด</li>
+        <li><span class="my">Pelengkap</span> ส่วนเติมเต็ม 3 ประเภท</li>
+        <li><span class="my">Unsur keterangan</span> ส่วนขยาย</li>
+        <li><span class="my">Perbezaan</span> ความต่างของ pelengkap objek keterangan</li>
+        <li>การเรียงประโยคแบบปกติและแบบสลับที่</li>
+        <li><span class="my">Pola ayat dasar</span> รูปแบบพื้นฐาน 4 แบบ</li>
+        <li>สรุปหกข้อที่ต้องจำให้ได้</li>
+      </ol>
+    </div>
+    <div class="card">
+      <div class="tochd"><span class="tag t-o">หน้า 18–29</span> แบบฝึกหัด 63 ข้อ</div>
+      <ol class="toclist" start="18">
+        <li>ชุดที่ 1 แยกภาคประธานกับภาคแสดง <small>เลือกตอบ 4 ข้อ</small></li>
+        <li>ชุดที่ 2 จำแนกรูปแบบประโยคพื้นฐาน <small>เลือกตอบ 5 ข้อ</small></li>
+        <li>ชุดที่ 3 ระบุคำหลักของวลี <small>เลือกตอบ 4 ข้อ</small></li>
+        <li>ชุดที่ 4 ส่วนเติมเต็มหรือส่วนขยาย <small>เลือกตอบ 4 ข้อ</small></li>
+        <li>ชุดที่ 5 กรรมและการเรียงประโยค <small>เลือกตอบ 4 ข้อ</small></li>
+        <li>ชุดที่ 6 ถูกหรือผิด <small>ตัดสินถูกผิด 6 ข้อ</small></li>
+        <li>ชุดที่ 7 เติมคำให้ถูกต้อง <small>ฝึกเขียน 6 ข้อ</small></li>
+        <li>ชุดที่ 8 เรียงคำให้เป็นประโยค <small>เรียงลำดับ 5 ข้อ</small></li>
+        <li>ชุดที่ 9 แก้ประโยคที่เขียนผิด <small>ฝึกเขียน 5 ข้อ</small></li>
+        <li>ชุดที่ 10 แยกส่วนประกอบของประโยค <small>ระบุหน้าที่ 10 ข้อ</small></li>
+        <li>ชุดที่ 11 เขียนภาษามลายูจากภาษาไทย <small>ฝึกแปล 10 ข้อ</small></li>
+        <li>สรุปผลคะแนน</li>
+      </ol>
+      <p class="tocnote">มีทั้งแบบเลือกตอบ ตัดสินถูกผิด เติมคำ เรียงคำ แก้ประโยค ระบุหน้าที่ของแต่ละส่วน และแปลไทยเป็นมลายู ทุกข้อแสดงเฉลยพร้อมคำอธิบายทันทีที่ตรวจ ระบบรวมคะแนนให้อัตโนมัติที่หน้าสุดท้าย</p>
+    </div>
+  </div>
+  <p class="tochint">เลื่อนหน้าด้วยปุ่มถัดไปด้านล่าง ปุ่มลูกศรซ้ายขวาบนแป้นพิมพ์ หรือกดจุดใต้หน้าจอเพื่อข้ามไปหน้าที่ต้องการ</p>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">ภาพรวม</div>
+  <h2>ประโยคหนึ่งประโยคมีอะไรบ้าง</h2>
+  <p class="lede">ทุกประโยคในภาษามลายูแบ่งเป็นสองส่วนใหญ่เสมอ คือส่วนที่ถูกอธิบายกับส่วนที่ทำหน้าที่อธิบาย นอกจากนั้นยังมีหน่วยเสริมอีกห้าชนิดที่ทำให้ประโยคสมบูรณ์ขึ้น</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-top:0">แกนบังคับ 2 ส่วน</h3>
+      <p><span class="tag t-s">Subjek</span> ภาคประธาน — ส่วนที่ถูกอธิบาย</p>
+      <p style="margin-top:8px"><span class="tag t-p">Predikat</span> ภาคแสดง — ส่วนที่อธิบายประธาน</p>
+      <p style="margin-top:12px; color:var(--muted); font-size:15px">ขาดส่วนใดส่วนหนึ่งไปไม่ถือเป็นประโยค</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">หน่วยเสริม 5 ชนิด</h3>
+      <ul class="tight">
+        <li><span class="my">objek</span> — กรรม</li>
+        <li><span class="my">inti</span> — คำหลัก</li>
+        <li><span class="my">penerang</span> — คำขยายคำหลัก</li>
+        <li><span class="my">pelengkap</span> — ส่วนเติมเต็ม</li>
+        <li><span class="my">unsur keterangan</span> — ส่วนขยาย</li>
+      </ul>
+    </div>
+  </div>
+  <h3>แล้วยังมีอีกสองเรื่องที่ต้องรู้</h3>
+  <div class="grid g2">
+    <div class="card"><b>Susunan ayat</b> — การเรียงลำดับ 2 แบบ คือแบบปกติกับแบบสลับที่</div>
+    <div class="card"><b>Pola ayat dasar</b> — รูปแบบประโยคพื้นฐาน 4 แบบ จำแนกตามชนิดวลีของภาคแสดง</div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">หน่วยที่ 1</div>
+  <h2><span class="ml">Subjek</span> ภาคประธาน</h2>
+  <p class="lede">ส่วนที่เป็นผู้กระทำ ผู้แสดงอาการ หรือเรื่องราวที่ถูกอธิบายในประโยค ส่วนใหญ่เป็นคำนาม คำสรรพนาม หรือคำที่ทำหน้าที่เทียบเท่านามวลี แบ่งย่อยได้เป็นบทประธานกับบทขยายประธาน</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:46%">ตัวอย่าง (Bahasa Melayu)</th><th>ความหมาย</th></tr></thead>
+    <tbody>
+      <tr><td class="my">pelajar itu</td><td>นักเรียนคนนั้น</td></tr>
+      <tr><td class="my">pelajar yang sedang menulis karangan itu</td><td>นักเรียนที่กำลังเขียนเรียงความคนนั้น</td></tr>
+      <tr><td class="my">penyanyi ini</td><td>นักร้องคนนี้</td></tr>
+      <tr><td class="my">pelumba-pelumba basikal</td><td>นักปั่นจักรยาน</td></tr>
+      <tr><td class="my">pelumba-pelumba basikal yang sedang berlatih itu</td><td>นักปั่นจักรยานที่กำลังฝึกซ้อมคนนั้น</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note" style="margin-top:16px">ภาคประธานยืดยาวได้ไม่จำกัด เพราะขยายด้วย <span class="my">yang</span> ต่อไปได้เรื่อย ๆ แต่แกนความหมายยังเป็นคำเดิมคือ <span class="my">pelajar</span> และ <span class="my">pelumba</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">หน่วยที่ 2</div>
+  <h2><span class="ml">Predikat</span> ภาคแสดง</h2>
+  <p class="lede">วลีที่วางอยู่หลังภาคประธาน ทำหน้าที่อธิบายหรือแสดงอาการของประธานให้ได้ความครบถ้วน แบ่งย่อยเป็นบทกริยา บทขยายกริยา บทกรรม และบทขยายกรรม</p>
+  <h3>ภาคแสดงตอบคำถามสี่แบบ</h3>
+  <div class="grid g4">
+    <div class="card"><span class="tag t-p">ทำอะไร</span><p style="margin-top:8px" class="my">Ali membaca buku.</p><p style="font-size:14px;color:var(--muted)">กริยาวลี (FK)</p></div>
+    <div class="card"><span class="tag t-p">เป็นอย่างไร</span><p style="margin-top:8px" class="my">Ali sangat rajin.</p><p style="font-size:14px;color:var(--muted)">คุณศัพท์วลี (FA)</p></div>
+    <div class="card"><span class="tag t-p">เป็นอะไร</span><p style="margin-top:8px" class="my">Ali seorang guru.</p><p style="font-size:14px;color:var(--muted)">นามวลี (FN)</p></div>
+    <div class="card"><span class="tag t-p">อยู่ที่ไหน</span><p style="margin-top:8px" class="my">Ali di sekolah.</p><p style="font-size:14px;color:var(--muted)">บุพบทวลี (FS)</p></div>
+  </div>
+  <h3>ตัวอย่างภาคแสดงจากเอกสาร</h3>
+  <div class="tw"><table>
+    <tbody>
+      <tr><td class="my" style="width:46%">sedang menulis karangan</td><td>กำลังเขียนเรียงความ</td></tr>
+      <tr><td class="my">menjawab tajuk kedua</td><td>ตอบประเด็นข้อที่สอง</td></tr>
+      <tr><td class="my">sangat terkenal di negara kita</td><td>โด่งดังมากในประเทศของเรา</td></tr>
+      <tr><td class="my">dari Pusat Sukan Negara</td><td>จากศูนย์กีฬาแห่งชาติ</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">ประกอบกัน</div>
+  <h2>ประธานกับภาคแสดงเข้าคู่กัน</h2>
+  <p class="lede">สังเกตว่าภาคประธานจะยาวหรือสั้นก็ได้ ภาคแสดงก็เช่นกัน สิ่งที่คงที่คือลำดับ ประธานมาก่อน ภาคแสดงตามหลัง</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:50%">Subjek (ภาคประธาน)</th><th>Predikat (ภาคแสดง)</th></tr></thead>
+    <tbody>
+      <tr><td><span class="my">Pelajar itu</span><br><small>นักเรียนคนนั้น</small></td><td><span class="my">sedang menulis karangan.</span><br><small>กำลังเขียนเรียงความ</small></td></tr>
+      <tr><td><span class="my">Pelajar yang sedang menulis karangan itu</span><br><small>นักเรียนที่กำลังเขียนเรียงความคนนั้น</small></td><td><span class="my">menjawab tajuk kedua.</span><br><small>ตอบประเด็นข้อที่สอง</small></td></tr>
+      <tr><td><span class="my">Penyanyi ini</span><br><small>นักร้องคนนี้</small></td><td><span class="my">sangat terkenal di negara kita.</span><br><small>โด่งดังมากในประเทศของเรา</small></td></tr>
+      <tr><td><span class="my">Pelumba-pelumba basikal</span><br><small>นักปั่นจักรยาน</small></td><td><span class="my">dari Pusat Sukan Negara.</span><br><small>จากศูนย์กีฬาแห่งชาติ</small></td></tr>
+      <tr><td><span class="my">Pelumba-pelumba basikal yang sedang berlatih itu</span><br><small>นักปั่นจักรยานที่กำลังฝึกซ้อมคนนั้น</small></td><td><span class="my">dari Pusat Sukan Negara.</span><br><small>จากศูนย์กีฬาแห่งชาติ</small></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">หน่วยเสริม</div>
+  <h2>ห้าหน่วยที่ทำให้ประโยคสมบูรณ์ขึ้น</h2>
+  <p class="lede">คำถามที่ใช้แยกได้เร็วที่สุดคือ ตัดออกแล้วประโยคยังจบความหรือไม่</p>
+  <div class="tw"><table>
+    <thead><tr><th>หน่วย</th><th>ความหมาย</th><th style="width:15%">ตัดออกได้</th><th>ตัวอย่าง</th></tr></thead>
+    <tbody>
+      <tr><td><span class="my">Objek</span></td><td>กรรม ผู้ถูกกระทำจากสกรรมกริยา</td><td>ไม่ได้</td><td class="my">Abang membeli <b>baju</b>.</td></tr>
+      <tr><td><span class="my">Inti</span></td><td>คำหลัก แกนความหมายของวลี</td><td>ไม่ได้</td><td class="my"><b>pelajar</b> itu</td></tr>
+      <tr><td><span class="my">Penerang</span></td><td>คำขยายคำหลัก</td><td>ได้</td><td class="my">pelajar <b>itu</b></td></tr>
+      <tr><td><span class="my">Pelengkap</span></td><td>ส่วนเติมเต็มหลังกริยาอกรรม</td><td>ไม่ได้</td><td class="my">Kesihatan saya beransur <b>baik</b>.</td></tr>
+      <tr><td><span class="my">Keterangan</span></td><td>ส่วนขยายบอกเวลา สถานที่ อาการ</td><td>ได้</td><td class="my">Dia berjalan <b>dengan cepat</b>.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note" style="margin-top:16px">จุดที่สับสนบ่อยที่สุดคือ <span class="my">pelengkap</span> กับ <span class="my">keterangan</span> เพราะอยู่ตำแหน่งเดียวกันคือท้ายประโยค ทดสอบด้วยการตัดออก <span class="my">Kesihatan saya beransur</span> ไม่จบความ แต่ <span class="my">Dia berjalan</span> จบความแล้ว</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">หน่วยเสริม 1</div>
+  <h2><span class="ml">Objek</span> กรรม</h2>
+  <p class="lede">คำนามหรือชุดคำนามที่เป็นผู้ถูกกระทำจากสกรรมกริยา คือกริยาที่ต้องมีกรรมมารองรับจึงจะได้ใจความสมบูรณ์</p>
+  <div class="strip">
+    <div class="seg s-s"><span class="w">Abang</span><span class="r">Subjek</span></div>
+    <div class="seg s-p"><span class="w">membeli</span><span class="r">Kata kerja transitif</span></div>
+    <div class="seg s-o"><span class="w">baju</span><span class="r">Objek</span></div>
+  </div>
+  <h3>กรรมสองชนิด</h3>
+  <div class="tw"><table>
+    <thead><tr><th style="width:22%"></th><th><span class="my">Objek tepat</span> กรรมตรง</th><th><span class="my">Objek sipi</span> กรรมรอง</th></tr></thead>
+    <tbody>
+      <tr><td>รับการกระทำ</td><td>โดยตรงจากกริยา</td><td>โดยอ้อม สืบเนื่องจากกรรมตรง</td></tr>
+      <tr><td>ตำแหน่ง</td><td>กรรมตัวแรก</td><td>กรรมตัวที่สอง</td></tr>
+      <tr><td>ตัวอย่าง</td><td class="my">Ali membelikan <b>adiknya</b> sehelai baju.</td><td class="my">Ali membelikan adiknya <b>sehelai baju</b>.</td></tr>
+      <tr><td></td><td class="my">Ibu memasakkan <b>ayah</b> makanan.</td><td class="my">Ibu memasakkan ayah <b>makanan</b>.</td></tr>
+      <tr><td></td><td class="my">Kakak menjahitkan <b>saya</b> sehelai seluar.</td><td class="my">Kakak menjahitkan saya <b>sehelai seluar</b>.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">หน่วยเสริม 2</div>
+  <h2><span class="ml">Inti</span> คำหลัก</h2>
+  <p class="lede">หน่วยคำหลักหรือความหมายหลักในการสร้างวลี เป็นส่วนที่ต้องปรากฏเสมอในวลีทุกชนิด ตัดออกแล้ววลีจะไม่สมบูรณ์</p>
+  <div class="tw"><table>
+    <thead><tr><th>ชนิดวลี</th><th>ตัวอย่าง</th><th>คำหลัก</th><th>คำขยาย</th><th style="width:32%">คำอธิบาย</th></tr></thead>
+    <tbody>
+      <tr><td>นามวลี</td><td class="my">pelajar itu</td><td class="my"><b>pelajar</b></td><td class="my">itu</td><td>เป็นแกนความหมายของวลี</td></tr>
+      <tr><td>กริยาวลี</td><td class="my">sedang makan nasi</td><td class="my"><b>makan</b></td><td class="my">sedang, nasi</td><td>เป็นกริยาหลักที่แสดงการกระทำ</td></tr>
+      <tr><td>คุณศัพท์วลี</td><td class="my">sangat besar</td><td class="my"><b>besar</b></td><td class="my">sangat</td><td>เป็นความหมายหลัก ส่วน sangat ขยายระดับ</td></tr>
+      <tr><td>บุพบทวลี</td><td class="my">di atas meja</td><td class="my"><b>di</b> (unsur wajib)</td><td class="my">atas meja</td><td>di เป็นตัวนำที่ขาดไม่ได้ แต่แกนความหมายอยู่ที่คำนาม meja</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">หน่วยเสริม 3 · ก</div>
+  <h2><span class="ml">Penerang nama</span> คำขยายที่เป็นคำนาม</h2>
+  <p class="lede">คำขยายคำหลักแบ่งเป็นสองกลุ่มใหญ่ กลุ่มแรกคือคำนามที่มาขยายคำนาม มี 13 ชนิด</p>
+  <div class="card">
+    <ul class="tight cols2" style="font-size:15.5px">
+      <li>keturunan — เชื้อสาย ต้นตระกูล</li>
+      <li>jenis — ชนิด</li>
+      <li>bahan — วัสดุที่ใช้ทำ</li>
+      <li>penyambut — คำเชื่อม</li>
+      <li>kegunaan — การใช้งาน</li>
+      <li>kelamin — เพศ</li>
+      <li>tempat — สถานที่</li>
+      <li>arah — ทิศทาง</li>
+      <li>anggota badan — อวัยวะ</li>
+      <li>hal atau perkara — เรื่องราว</li>
+      <li>milik — ความเป็นเจ้าของ</li>
+      <li>khas — คำนามเฉพาะ</li>
+      <li>panggilan atau gelaran — ชื่อเรียกหรือยศ</li>
+    </ul>
+  </div>
+  <h3>ตัวอย่าง</h3>
+  <div class="tw"><table>
+    <thead><tr><th style="width:50%">Inti (คำหลัก)</th><th>Penerang nama (คำขยายเป็นนาม)</th></tr></thead>
+    <tbody>
+      <tr><td class="my">orang</td><td class="my">Melayu</td></tr>
+      <tr><td class="my">pokok</td><td class="my">getah</td></tr>
+      <tr><td class="my">beg</td><td class="my">kulit</td></tr>
+      <tr><td class="my">ayam</td><td class="my">jantan</td></tr>
+      <tr><td class="my">penduduk</td><td class="my">bandar</td></tr>
+      <tr><td class="my">batang</td><td class="my">hidung</td></tr>
+      <tr><td class="my">rumah</td><td class="my">saya</td></tr>
+      <tr><td class="my">bahasa</td><td class="my">Melayu</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">หน่วยเสริม 3 · ข</div>
+  <h2><span class="ml">Penerang bukan nama</span> คำขยายที่ไม่ใช่คำนาม</h2>
+  <p class="lede">กลุ่มที่สอง คือคำขยายที่ไม่ใช่คำนาม มี 6 ชนิด</p>
+  <div class="grid g3">
+    <div class="card"><b>penentu</b><p style="font-size:15px;color:var(--muted)">คำชี้เฉพาะ</p></div>
+    <div class="card"><b>kata kerja</b><p style="font-size:15px;color:var(--muted)">คำกริยา</p></div>
+    <div class="card"><b>kata adjektif</b><p style="font-size:15px;color:var(--muted)">คำคุณศัพท์</p></div>
+    <div class="card"><b>kata adverba</b><p style="font-size:15px;color:var(--muted)">คำวิเศษณ์</p></div>
+    <div class="card"><b>frasa sendi nama</b><p style="font-size:15px;color:var(--muted)">บุพบทวลี</p></div>
+    <div class="card"><b>bilangan ordinal</b><p style="font-size:15px;color:var(--muted)">จำนวนนับลำดับที่</p></div>
+  </div>
+  <h3>ตัวอย่าง</h3>
+  <div class="tw"><table>
+    <thead><tr><th style="width:50%">Inti (คำหลัก)</th><th>Penerang bukan nama</th></tr></thead>
+    <tbody>
+      <tr><td class="my">orang</td><td class="my">itu</td></tr>
+      <tr><td class="my">rumah</td><td class="my">ini</td></tr>
+      <tr><td class="my">mesin</td><td class="my">jahit</td></tr>
+      <tr><td class="my">meja</td><td class="my">tulis</td></tr>
+      <tr><td class="my">anak</td><td class="my">muda</td></tr>
+      <tr><td class="my">sekolah</td><td class="my">rendah</td></tr>
+      <tr><td class="my">hari</td><td class="my">lusa</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note" style="margin-top:16px">หลักที่ใช้ได้ทุกกรณี คำหลักมาก่อน คำขยายตามหลัง ตรงข้ามกับภาษาอังกฤษ นักเรียนไทยได้เปรียบเพราะภาษาไทยเรียงแบบเดียวกัน</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">หน่วยเสริม 4</div>
+  <h2><span class="ml">Pelengkap</span> ส่วนเติมเต็ม</h2>
+  <p class="lede">คำที่อยู่หลังกริยาวลี ทำหน้าที่ทำให้คำกริยาสมบูรณ์ขึ้น ตัดออกไม่ได้เพราะจะทำให้กริยานั้นไม่จบความ ใช้กับกริยาที่ไม่ต้องการกรรมแต่ต้องมีส่วนเติมเต็ม</p>
+  <div class="grid g3">
+    <div class="card">
+      <span class="tag t-k">pelengkap kata nama</span>
+      <p style="margin-top:10px" class="my">Rumah kawan saya beratapkan <b>bertam</b>.</p>
+      <p style="font-size:14.5px;color:var(--muted)">บ้านเพื่อนของฉันมีหลังคามุงจาก</p>
+      <p style="font-size:14.5px;margin-top:8px"><span class="my">beratapkan</span> เป็นกริยา · <span class="my">bertam</span> เป็นส่วนเติมเต็ม</p>
+    </div>
+    <div class="card">
+      <span class="tag t-k">pelengkap kata adjektif</span>
+      <p style="margin-top:10px" class="my">Kesihatan saya beransur <b>baik</b>.</p>
+      <p style="font-size:14.5px;color:var(--muted)">สุขภาพของฉันเริ่มดีขึ้น</p>
+      <p style="font-size:14.5px;margin-top:8px"><span class="my">beransur</span> เป็นกริยา · <span class="my">baik</span> เป็นส่วนเติมเต็ม</p>
+    </div>
+    <div class="card">
+      <span class="tag t-k">pelengkap kata sendi nama</span>
+      <p style="margin-top:10px" class="my">Abang saya bekerja <b>di Songkhla</b>.</p>
+      <p style="font-size:14.5px;color:var(--muted)">พี่ชายของฉันทำงานที่สงขลา</p>
+      <p style="font-size:14.5px;margin-top:8px"><span class="my">bekerja</span> เป็นกริยา · <span class="my">di Songkhla</span> เป็นส่วนเติมเต็ม</p>
+    </div>
+  </div>
+  <h3>ตัวอย่างเพิ่มเติมจำแนกตามชนิดของส่วนเติมเต็ม</h3>
+  <div class="tw"><table>
+    <thead><tr><th style="width:20%">ชนิด</th><th style="width:38%">ประโยค</th><th style="width:26%">ความหมาย</th><th>กริยา + ส่วนเติมเต็ม</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="3"><span class="my">Kata nama</span><br><small>คำนาม</small></td><td class="my">Beliau menjadi guru di sekolah itu.</td><td>ท่านเป็นครูที่โรงเรียนนั้น</td><td class="my">menjadi + guru</td></tr>
+      <tr><td class="my">Kanak-kanak itu sudah menjadi remaja.</td><td>เด็กคนนั้นโตเป็นวัยรุ่นแล้ว</td><td class="my">menjadi + remaja</td></tr>
+      <tr><td class="my">Rumah kawan saya beratapkan bertam.</td><td>บ้านเพื่อนของฉันมุงหลังคาด้วยจาก</td><td class="my">beratapkan + bertam</td></tr>
+      <tr><td rowspan="3"><span class="my">Frasa sendi nama</span><br><small>บุพบทวลี</small></td><td class="my">Mereka tinggal di Kuala Lumpur.</td><td>พวกเขาอาศัยอยู่ที่กัวลาลัมเปอร์</td><td class="my">tinggal + di Kuala Lumpur</td></tr>
+      <tr><td class="my">Ali berasal dari Melaka.</td><td>อาลีมาจากมะละกา</td><td class="my">berasal + dari Melaka</td></tr>
+      <tr><td class="my">Abang saya bekerja di Songkhla.</td><td>พี่ชายของฉันทำงานที่สงขลา</td><td class="my">bekerja + di Songkhla</td></tr>
+      <tr><td rowspan="3"><span class="my">Kata adjektif</span><br><small>คำคุณศัพท์</small></td><td class="my">Keadaannya menjadi parah.</td><td>สถานการณ์กลายเป็นรุนแรง</td><td class="my">menjadi + parah</td></tr>
+      <tr><td class="my">Pokok itu tumbuh tinggi.</td><td>ต้นไม้ต้นนั้นเติบโตสูง</td><td class="my">tumbuh + tinggi</td></tr>
+      <tr><td class="my">Kesihatan saya beransur baik.</td><td>สุขภาพของฉันเริ่มดีขึ้น</td><td class="my">beransur + baik</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Contoh Ayat — ตัวอย่างประโยคที่มี Pelengkap จำแนกตามชนิด</h3>
+  <div class="grid g3">
+    <div class="card">
+      <span class="tag t-k">Kata Nama sebagai Pelengkap</span>
+      <ol style="margin:10px 0 0 20px; font-size:14.5px; line-height:1.75">
+        <li class="my">Beliau menjadi guru di sekolah itu.<br><span style="font-family:'IBM Plex Sans Thai',sans-serif;font-style:normal;color:var(--muted);font-size:13.5px">ท่านเป็นครูที่โรงเรียนนั้น</span></li>
+        <li class="my">Kanak-kanak itu sudah menjadi remaja.<br><span style="font-family:'IBM Plex Sans Thai',sans-serif;font-style:normal;color:var(--muted);font-size:13.5px">เด็กคนนั้นโตเป็นวัยรุ่นแล้ว</span></li>
+      </ol>
+    </div>
+    <div class="card">
+      <span class="tag t-k">Frasa Sendi Nama sebagai Pelengkap</span>
+      <ol style="margin:10px 0 0 20px; font-size:14.5px; line-height:1.75">
+        <li class="my">Mereka tinggal di Kuala Lumpur.<br><span style="font-family:'IBM Plex Sans Thai',sans-serif;font-style:normal;color:var(--muted);font-size:13.5px">พวกเขาอาศัยอยู่ที่กัวลาลัมเปอร์</span></li>
+        <li class="my">Ali berasal dari Melaka.<br><span style="font-family:'IBM Plex Sans Thai',sans-serif;font-style:normal;color:var(--muted);font-size:13.5px">อาลีมาจากมะละกา</span></li>
+      </ol>
+    </div>
+    <div class="card">
+      <span class="tag t-k">Kata Adjektif sebagai Pelengkap</span>
+      <ol style="margin:10px 0 0 20px; font-size:14.5px; line-height:1.75">
+        <li class="my">Keadaannya menjadi parah.<br><span style="font-family:'IBM Plex Sans Thai',sans-serif;font-style:normal;color:var(--muted);font-size:13.5px">สถานการณ์กลายเป็นรุนแรง</span></li>
+        <li class="my">Pokok itu tumbuh tinggi.<br><span style="font-family:'IBM Plex Sans Thai',sans-serif;font-style:normal;color:var(--muted);font-size:13.5px">ต้นไม้ต้นนั้นเติบโตสูง</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <h3>Objek, Pelengkap และ Keterangan ต่างกันอย่างไร</h3>
+  <p class="lede" style="margin-bottom:14px">ทั้งสามหน่วยปรากฏหลังกริยาวลีเหมือนกัน แต่แยกออกจากกันได้ด้วยชนิดของกริยาที่นำหน้า การตัดออกได้หรือไม่ และการทำเป็นกรรมวาจก</p>
+  <div class="grid g3">
+    <div class="card">
+      <span class="tag t-k">Pelengkap ส่วนเติมเต็ม</span>
+      <ul class="tight" style="margin-top:10px; font-size:14.5px; line-height:1.75">
+        <li>ตามหลังอกรรมกริยาที่ต้องการส่วนเติมเต็ม (KKTT)</li>
+        <li>ต้องมีเพื่อให้ประโยคสมบูรณ์ ตัดออกไม่ได้ ประโยคจะค้างคา</li>
+        <li>ทำเป็นกรรมวาจกไม่ได้</li>
+        <li>ตัวอย่าง: <span class="my">Dia menjadi doktor.</span> (พูดแค่ <span class="my">Dia menjadi</span> ความหมายค้างคา)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag t-o">Objek กรรม</span>
+      <ul class="tight" style="margin-top:10px; font-size:14.5px; line-height:1.75">
+        <li>ตามหลังสกรรมกริยา (KKT)</li>
+        <li>เป็นคำนามหรือนามวลีที่รับผลจากการกระทำของกริยา</li>
+        <li>ทำเป็นกรรมวาจกได้ กรรมจะกลายเป็นประธาน</li>
+        <li>ตัวอย่าง: <span class="my">Ali membaca buku.</span> → <span class="my">Buku dibaca oleh Ali.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag" style="background:#EEEDE6; color:#5C5A52">Keterangan ส่วนขยาย</span>
+      <ul class="tight" style="margin-top:10px; font-size:14.5px; line-height:1.75">
+        <li>ตามหลังอกรรมกริยาอิสระ หรืออยู่ท้ายประโยค</li>
+        <li>ให้ข้อมูลเพิ่มเติม เช่น สถานที่ เวลา อาการ</li>
+        <li>ตัดออกได้โดยไม่ทำให้โครงสร้างหลักเสียหาย ทำเป็นกรรมวาจกไม่ได้</li>
+        <li>ตัวอย่าง: <span class="my">Kami mandi di sungai.</span> (ตัด <span class="my">di sungai</span> ออกเหลือ <span class="my">Kami mandi</span> ก็ยังสมบูรณ์)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note" style="margin-top:16px">กริยาอกรรมที่บังคับต้องมีส่วนเติมเต็ม ควรจำไว้เป็นชุด <span class="my">menjadi · tinggal · berasal · tumbuh · beransur · beratapkan · bekerja</span> เห็นกริยาเหล่านี้เมื่อใด ให้เตรียมมองหาส่วนเติมเต็มทันที ดูตารางเปรียบเทียบฉบับเต็มพร้อมบททดสอบได้ในสไลด์ถัดไป</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">หน่วยเสริม 5</div>
+  <h2><span class="ml">Unsur keterangan</span> ส่วนขยาย</h2>
+  <p class="lede">องค์ประกอบที่พบได้ตามปกติในกริยาวลี ทำหน้าที่อธิบายคำกริยาให้ละเอียดขึ้น ในโครงสร้างประโยคปกติจะอยู่หลังสกรรมกริยา ประกอบด้วยบุพบทวลี คุณศัพท์วลี และนามวลี</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:52%">ประโยค</th><th>ส่วนขยาย</th><th>บอกอะไร</th></tr></thead>
+    <tbody>
+      <tr><td class="my">Pelancong itu tiba <b>malam tadi</b>.</td><td class="my">malam tadi</td><td>เวลา (นามวลี)</td></tr>
+      <tr><td class="my">Dia berjalan <b>dengan cepat</b>.</td><td class="my">dengan cepat</td><td>อาการ (บุพบทวลี)</td></tr>
+      <tr><td class="my">Ramai wanita bekerja <b>di kilang</b>.</td><td class="my">di kilang</td><td>สถานที่ (บุพบทวลี)</td></tr>
+      <tr><td class="my">Kuliah itu tamat <b>pada pukul 4.30 petang</b>.</td><td class="my">pada pukul 4.30 petang</td><td>เวลา (บุพบทวลี)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note" style="margin-top:16px">ส่วนขยายเป็นหน่วยเดียวที่ย้ายตำแหน่งไปไว้ต้นประโยคได้ เช่น <span class="my">Malam tadi pelancong itu tiba.</span> ยังถูกต้อง ใช้จุดนี้ตรวจว่าเป็น keterangan หรือ pelengkap ได้อีกทางหนึ่ง</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">เปรียบเทียบ</div>
+  <h2><span class="ml">Perbezaan</span> ความต่างของสามหน่วยที่อยู่หลังกริยา</h2>
+  <p class="lede">ความต่างระหว่าง pelengkap objek และ keterangan อยู่ที่ชนิดของคำกริยาที่ใช้ และคุณสมบัติของหน่วยนั้นในประโยค เกณฑ์ที่ตัดสินได้เด็ดขาดที่สุดคือการเปลี่ยนเป็นประโยคกรรมวาจก</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:19%"></th><th><span class="my">Pelengkap</span><br><small>ส่วนเติมเต็ม</small></th><th><span class="my">Objek</span><br><small>กรรม</small></th><th><span class="my">Keterangan</span><br><small>ส่วนขยาย</small></th></tr></thead>
+    <tbody>
+      <tr><td><b>ชนิดกริยาที่นำหน้า</b></td><td>อกรรมกริยาที่ต้องการส่วนเติมเต็ม (KKTT)</td><td>สกรรมกริยา (KKT)</td><td>อกรรมกริยาอิสระ หรืออยู่ท้ายประโยค</td></tr>
+      <tr><td><b>ลักษณะสำคัญ</b></td><td>ต้องมีเพื่อให้ประโยคสมบูรณ์</td><td>คำนามหรือนามวลีที่รับผลจากการกระทำ</td><td>ให้ข้อมูลเพิ่มเติมเรื่องสถานที่ เวลา อาการ</td></tr>
+      <tr><td><b>ตัดออกได้หรือไม่</b></td><td>ตัดไม่ได้ ประโยคจะค้างคา</td><td>ตัดไม่ได้ ประโยคจะไม่ครบความ</td><td>ตัดได้ ประโยคยังสมบูรณ์</td></tr>
+      <tr><td><b>ทำเป็นกรรมวาจก</b></td><td>ทำไม่ได้</td><td>ทำได้ กรรมจะกลายเป็นประธาน</td><td>ทำไม่ได้</td></tr>
+      <tr><td><b>ตัวอย่าง</b></td><td class="my">Dia menjadi doktor.</td><td class="my">Ali membaca buku.</td><td class="my">Kami mandi di sungai.</td></tr>
+      <tr><td><b>ผลของการทดสอบ</b></td><td><span class="my">Dia menjadi</span> ค้างคา ไม่จบความ</td><td><span class="my">Buku dibaca oleh Ali.</span> ทำกรรมวาจกได้</td><td><span class="my">Kami mandi</span> ยังจบความสมบูรณ์</td></tr>
+    </tbody>
+  </table></div>
+  <h3>ลำดับการตัดสินเมื่อเจอคำที่อยู่หลังกริยา</h3>
+  <div class="grid g3">
+    <div class="card"><span class="tag t-o">ขั้นที่ 1</span><p style="margin-top:8px">ลองตัดออก ถ้าประโยคยังจบความ ตอบได้เลยว่าเป็น <span class="my">keterangan</span></p></div>
+    <div class="card"><span class="tag t-k">ขั้นที่ 2</span><p style="margin-top:8px">ถ้าตัดไม่ได้ ลองทำเป็นกรรมวาจก ถ้าทำได้คือ <span class="my">objek</span> เพราะกริยาเป็นสกรรมกริยา</p></div>
+    <div class="card"><span class="tag t-p">ขั้นที่ 3</span><p style="margin-top:8px">ถ้าตัดไม่ได้และทำกรรมวาจกไม่ได้ คือ <span class="my">pelengkap</span></p></div>
+  </div>
+  <div class="note" style="margin-top:16px">การทดสอบด้วยกรรมวาจกแม่นยำกว่าการดูชนิดคำ เพราะบุพบทวลีเป็นได้ทั้ง pelengkap และ keterangan เช่น <span class="my">Mereka tinggal di Kuala Lumpur</span> เป็นส่วนเติมเต็ม แต่ <span class="my">Kami mandi di sungai</span> เป็นส่วนขยาย ทั้งที่หน้าตาเหมือนกัน</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">การเรียงประโยค</div>
+  <h2><span class="ml">Susunan biasa</span> กับ <span class="ml">susunan songsang</span></h2>
+  <p class="lede">แบบปกติภาคประธานอยู่หน้า แบบสลับที่ภาคแสดงอยู่หน้าและต้องมีจุลภาคคั่นเสมอ</p>
+  <h3>Susunan biasa — แบบปกติ</h3>
+  <div class="tw"><table>
+    <thead><tr><th style="width:38%">Subjek</th><th>Predikat</th></tr></thead>
+    <tbody>
+      <tr><td class="my">Ali</td><td class="my">guru sementara di sekolah itu.</td></tr>
+      <tr><td class="my">Adik bongsuku</td><td class="my">sedang tidur di serambi rumah.</td></tr>
+      <tr><td class="my">Pegawai kanan pejabat itu</td><td class="my">amat rajin dan cekap pula.</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Susunan songsang — แบบสลับที่</h3>
+  <div class="tw"><table>
+    <thead><tr><th style="width:62%">Predikat</th><th>Subjek</th></tr></thead>
+    <tbody>
+      <tr><td class="my">Guru sementara di sekolah itu,</td><td class="my">Ali.</td></tr>
+      <tr><td class="my">Sedang tidur di serambi rumah,</td><td class="my">adik bongsuku.</td></tr>
+      <tr><td class="my">Amat rajin dan cekap pula,</td><td class="my">pegawai kanan pejabat itu.</td></tr>
+      <tr><td class="my">Lulus peperiksaan,</td><td class="my">pelajar itu.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">รูปแบบพื้นฐาน</div>
+  <h2><span class="ml">Pola ayat dasar</span> โครงสร้างประโยคพื้นฐาน 4 แบบ</h2>
+  <p class="lede">ภาคประธานเป็นนามวลีทุกแบบ ตัวแปรอยู่ที่ชนิดวลีของภาคแสดง จึงจำแนกด้วยภาคแสดง ไม่ใช่ภาคประธาน</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:14%">รูปแบบ</th><th style="width:26%">Subjek (FN)</th><th>Predikat</th><th style="width:18%">ตอบคำถาม</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2"><b>FN + FN</b></td><td class="my">Abang Lukman</td><td class="my">doktor gigi.</td><td rowspan="2">เป็นอะไร</td></tr>
+      <tr><td class="my">Guru itu</td><td class="my">seorang pendidik.</td></tr>
+      <tr><td rowspan="2"><b>FN + FK</b></td><td class="my">Adik</td><td class="my">sedang membaca buku.</td><td rowspan="2">ทำอะไร</td></tr>
+      <tr><td class="my">Kami</td><td class="my">pergi ke perpustakaan.</td></tr>
+      <tr><td rowspan="2"><b>FN + FA</b></td><td class="my">Afnan</td><td class="my">sangat cerdik.</td><td rowspan="2">เป็นอย่างไร</td></tr>
+      <tr><td class="my">Kelas ini</td><td class="my">bersih dan selesa.</td></tr>
+      <tr><td rowspan="2"><b>FN + FS</b></td><td class="my">Emaknya</td><td class="my">di hospital Yala.</td><td rowspan="2">อยู่ที่ไหน เกี่ยวกับอะไร</td></tr>
+      <tr><td class="my">Berita itu</td><td class="my">tentang tsunami.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">สรุป</div>
+  <h2>หกข้อที่ต้องจำให้ได้</h2>
+  <div class="grid g2">
+    <div class="card"><b>1. ประโยคมีสองส่วนเสมอ</b><p style="margin-top:6px;font-size:15.5px">Subjek คือส่วนที่ถูกอธิบาย Predikat คือส่วนที่อธิบาย ขาดส่วนใดไปก็ไม่เป็นประโยค</p></div>
+    <div class="card"><b>2. คำหลักมาก่อน คำขยายตามหลัง</b><p style="margin-top:6px;font-size:15.5px">ใช้ได้กับวลีทุกชนิด <span class="my">buku cerita itu</span> ตรงข้ามกับภาษาอังกฤษ แต่ตรงกับภาษาไทย</p></div>
+    <div class="card"><b>3. ภาษามลายูไม่มีคำว่าเป็น</b><p style="margin-top:6px;font-size:15.5px"><span class="my">Ali guru.</span> แปลว่าอาลีเป็นครู โดยไม่ต้องมีกริยาเชื่อม นักเรียนไทยมักเติมคำเกิน</p></div>
+    <div class="card"><b>4. ตัดออกได้หรือไม่ คือเกณฑ์แยกหน่วย</b><p style="margin-top:6px;font-size:15.5px">Objek กับ pelengkap ตัดไม่ได้ ส่วน penerang กับ keterangan ตัดได้</p></div>
+    <div class="card"><b>5. เฉพาะ keterangan ที่ย้ายที่ได้</b><p style="margin-top:6px;font-size:15.5px">ย้ายไปต้นประโยคแล้วยังถูก ต่างจากกรรมที่ย้ายไม่ได้</p></div>
+    <div class="card"><b>6. จำแนกรูปแบบด้วยภาคแสดง</b><p style="margin-top:6px;font-size:15.5px">ประธานเป็นนามวลีทุกแบบ ภาคแสดงต่างหากที่เป็น FN FK FA หรือ FS</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">แบบฝึกหัด ชุดที่ 1</div>
+  <h2>แยกภาคประธานกับภาคแสดง</h2>
+  <p class="lede">เลือกส่วนที่เป็นภาคประธาน 4 ข้อ</p>
+  <div class="brief">
+    <div class="bhd">คำชี้แจง</div>
+    <ul>
+        <li>อ่านประโยคให้จบก่อน แล้วถามว่าประโยคนี้กำลังพูดถึงใครหรือสิ่งใด</li>
+        <li>คำขยายที่ตามหลัง <span class="my">yang</span> และคำชี้เฉพาะ <span class="my">ini itu</span> ยังนับรวมอยู่ในภาคประธาน</li>
+        <li>ข้อละ 1 คะแนน รวม 4 คะแนน</li>
+        <li>ทุกข้อกดได้ครั้งเดียว เมื่อตรวจแล้วระบบจะแสดงคำตอบที่ถูกต้อง คำอธิบาย และข้อควรจำทันที</li>
+    </ul>
+  </div>
+  <div class="tipcard">
+    <div class="thd">เคล็ดลับก่อนเริ่มทำ</div>
+    <ul>
+      <li>หาคำกริยาหรือคำแรกของภาคแสดงให้เจอก่อน ทุกอย่างที่อยู่ก่อนหน้านั้นคือภาคประธาน</li>
+      <li>ถ้าเจอคำว่า <span class="my">yang</span> ให้อ่านต่อไปจนจบส่วนขยาย อย่าตัดภาคประธานตรงคำนี้</li>
+      <li>คำชี้เฉพาะ <span class="my">ini</span> และ <span class="my">itu</span> มักเป็นคำปิดท้ายภาคประธาน</li>
+    </ul>
+  </div>
+  <div id="ex1"></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">แบบฝึกหัด ชุดที่ 2</div>
+  <h2>จำแนกรูปแบบประโยคพื้นฐาน</h2>
+  <p class="lede">เลือกรูปแบบให้ถูกต้อง 5 ข้อ</p>
+  <div class="brief">
+    <div class="bhd">คำชี้แจง</div>
+    <ul>
+        <li>ดูที่คำแรกของภาคแสดงว่าเป็นคำชนิดใด นาม กริยา คุณศัพท์ หรือบุพบท</li>
+        <li>ภาคประธานเป็นนามวลีทุกข้อ จึงใช้ตัดสินไม่ได้</li>
+        <li>ข้อละ 1 คะแนน รวม 5 คะแนน</li>
+        <li>ทุกข้อกดได้ครั้งเดียว เมื่อตรวจแล้วระบบจะแสดงคำตอบที่ถูกต้อง คำอธิบาย และข้อควรจำทันที</li>
+    </ul>
+  </div>
+  <div class="tipcard">
+    <div class="thd">เคล็ดลับก่อนเริ่มทำ</div>
+    <ul>
+      <li>ดูคำแรกของภาคแสดง คำนามคือ FN คำขึ้นต้น me- ber- ter- คือ FK คำคุณศัพท์คือ FA และ di ke dari pada tentang คือ FS</li>
+      <li>อย่าดูคำท้ายประโยค เพราะคำท้ายมักเป็นคำขยายที่หลอกให้ตอบผิด</li>
+      <li>คำที่ขึ้นต้นด้วย me- ถือเป็นกริยาเสมอ แม้ความหมายจะฟังดูเหมือนคำคุณศัพท์</li>
+    </ul>
+  </div>
+  <div id="ex2"></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">แบบฝึกหัด ชุดที่ 3</div>
+  <h2>ระบุคำหลักของวลี</h2>
+  <p class="lede">เลือกคำที่เป็นแกนความหมาย 4 ข้อ</p>
+  <div class="brief">
+    <div class="bhd">คำชี้แจง</div>
+    <ul>
+        <li>ทดสอบด้วยการตัดคำอื่นออกทีละคำ คำที่ตัดแล้ววลีพังคือคำหลัก</li>
+        <li>ระวังข้อที่เป็นบุพบทวลี เพราะใช้หลักคนละแบบกับวลีอีกสามชนิด</li>
+        <li>ข้อละ 1 คะแนน รวม 4 คะแนน</li>
+        <li>ทุกข้อกดได้ครั้งเดียว เมื่อตรวจแล้วระบบจะแสดงคำตอบที่ถูกต้อง คำอธิบาย และข้อควรจำทันที</li>
+    </ul>
+  </div>
+  <div class="tipcard">
+    <div class="thd">เคล็ดลับก่อนเริ่มทำ</div>
+    <ul>
+      <li>แปลวลีกลับเป็นภาษาไทย คำที่เป็นคำตั้งต้นในภาษาไทยคือคำหลัก</li>
+      <li>นามวลีและคุณศัพท์วลี คำหลักคือคำแรก แต่กริยาวลี คำหลักคือคำกริยา ไม่ใช่ <span class="my">sedang</span> หรือ <span class="my">telah</span></li>
+      <li>บุพบทวลีเป็นข้อยกเว้นเดียว คำบุพบทเป็นหน่วยที่ต้องมี แต่แกนความหมายอยู่ที่คำนามข้างหลัง</li>
+    </ul>
+  </div>
+  <div id="ex3"></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">แบบฝึกหัด ชุดที่ 4</div>
+  <h2>ส่วนเติมเต็มหรือส่วนขยาย</h2>
+  <p class="lede">ตัดสินหน้าที่ของคำที่ขีดเส้นใต้ 4 ข้อ</p>
+  <div class="brief">
+    <div class="bhd">คำชี้แจง</div>
+    <ul>
+        <li>เกณฑ์แรก ตัดคำที่ขีดเส้นใต้ออกแล้วประโยคยังจบความหรือไม่</li>
+        <li>เกณฑ์ที่สอง ย้ายไปไว้ต้นประโยคได้หรือไม่ ถ้าได้ทั้งสองอย่างคือ keterangan</li>
+        <li>ข้อละ 1 คะแนน รวม 4 คะแนน</li>
+        <li>ทุกข้อกดได้ครั้งเดียว เมื่อตรวจแล้วระบบจะแสดงคำตอบที่ถูกต้อง คำอธิบาย และข้อควรจำทันที</li>
+    </ul>
+  </div>
+  <div class="tipcard">
+    <div class="thd">เคล็ดลับก่อนเริ่มทำ</div>
+    <ul>
+      <li>ทดสอบข้อที่หนึ่ง ตัดคำที่ขีดเส้นใต้ออกแล้วอ่านใหม่ ถ้าประโยคยังฟังจบความคือ keterangan</li>
+      <li>ทดสอบข้อที่สอง ย้ายไปไว้ต้นประโยค ถ้าย้ายได้คือ keterangan ถ้าย้ายแล้วประหลาดคือ pelengkap</li>
+      <li>จำกริยากลุ่มที่ต้องมี pelengkap ไว้เป็นชุด เช่น <span class="my">beransur beratapkan menjadi</span></li>
+    </ul>
+  </div>
+  <div id="ex4"></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">แบบฝึกหัด ชุดที่ 5</div>
+  <h2>กรรมและการเรียงประโยค</h2>
+  <p class="lede">รวมเรื่องกรรมตรง กรรมรอง และการเรียงสองแบบ 4 ข้อ</p>
+  <div class="brief">
+    <div class="bhd">คำชี้แจง</div>
+    <ul>
+        <li>กรรมตรงคือกรรมตัวแรกที่ตามหลังกริยา กรรมรองคือกรรมตัวที่สอง</li>
+        <li>ประโยคสลับที่ต้องมีจุลภาคคั่น และสิ่งที่อยู่หน้าจุลภาคต้องเป็นภาคแสดงจริง</li>
+        <li>ข้อละ 1 คะแนน รวม 4 คะแนน</li>
+        <li>ทุกข้อกดได้ครั้งเดียว เมื่อตรวจแล้วระบบจะแสดงคำตอบที่ถูกต้อง คำอธิบาย และข้อควรจำทันที</li>
+    </ul>
+  </div>
+  <div class="tipcard">
+    <div class="thd">เคล็ดลับก่อนเริ่มทำ</div>
+    <ul>
+      <li>กรรมตรงคือคำที่ตามหลังกริยาทันที ไม่ใช่สิ่งของที่ถูกกระทำ</li>
+      <li>กริยาที่ลงท้ายด้วย -kan มักรับกรรมสองตัว เช่น <span class="my">membelikan memasakkan menjahitkan</span></li>
+      <li>ก่อนตอบว่าเป็นประโยคสลับที่ ให้ถามก่อนว่าสิ่งที่อยู่หน้าจุลภาคเป็นภาคแสดงจริงหรือเป็นเพียงส่วนขยาย</li>
+    </ul>
+  </div>
+  <div id="ex5"></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">แบบฝึกหัด ชุดที่ 6</div>
+  <h2>ถูกหรือผิด <span class="ml">betul atau salah</span></h2>
+  <p class="lede">ตัดสินว่าเขียนถูกตามหลักไวยากรณ์หรือไม่ 6 ข้อ</p>
+  <div class="brief">
+    <div class="bhd">คำชี้แจง</div>
+    <ul>
+        <li>ตรวจสามอย่าง ลำดับคำหลักกับคำขยาย กรรมของสกรรมกริยา และส่วนเติมเต็ม</li>
+        <li>ประโยคที่ถูกก็มีอยู่ในชุดนี้ อย่าเดาว่าทุกข้อผิด</li>
+        <li>ข้อละ 1 คะแนน รวม 6 คะแนน</li>
+        <li>ทุกข้อกดได้ครั้งเดียว เมื่อตรวจแล้วระบบจะแสดงคำตอบที่ถูกต้อง คำอธิบาย และข้อควรจำทันที</li>
+    </ul>
+  </div>
+  <div class="tipcard">
+    <div class="thd">เคล็ดลับก่อนเริ่มทำ</div>
+    <ul>
+      <li>ตรวจสามจุดเสมอ ลำดับคำหลักกับคำขยาย กรรมของสกรรมกริยา และจุลภาคของประโยคสลับที่</li>
+      <li>ประโยคที่ไม่มีคำกริยาเลยไม่ได้แปลว่าผิด เพราะภาษามลายูไม่ต้องมีคำว่าเป็น</li>
+      <li>ถ้าเห็นกริยาขึ้นต้นด้วย mem- men- meng- ให้เช็กทันทีว่ามีกรรมตามหลังหรือยัง</li>
+    </ul>
+  </div>
+  <div id="ex6"></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">แบบฝึกหัด ชุดที่ 7</div>
+  <h2>เติมคำให้ถูกต้อง</h2>
+  <p class="lede">พิมพ์คำตอบลงในช่อง 6 ข้อ</p>
+  <div class="brief">
+    <div class="bhd">คำชี้แจง</div>
+    <ul>
+        <li>พิมพ์คำตอบแล้วกด Enter หรือปุ่มตรวจคำตอบก็ได้</li>
+        <li>ตัวพิมพ์ใหญ่เล็กและจุดท้ายประโยคไม่มีผล บางข้อรับคำตอบได้มากกว่าหนึ่งรูป</li>
+        <li>ข้อละ 1 คะแนน รวม 6 คะแนน</li>
+        <li>ทุกข้อกดได้ครั้งเดียว เมื่อตรวจแล้วระบบจะแสดงคำตอบที่ถูกต้อง คำอธิบาย และข้อควรจำทันที</li>
+    </ul>
+  </div>
+  <div class="tipcard">
+    <div class="thd">เคล็ดลับก่อนเริ่มทำ</div>
+    <ul>
+      <li>จำสามคำบุพบทคู่กัน <span class="my">di</span> คืออยู่ที่ <span class="my">ke</span> คือไปยัง <span class="my">dari</span> คือมาจาก</li>
+      <li>ถ้าโจทย์บอกจำนวนคำไว้ ให้ตอบตามจำนวนนั้นพอดี อย่าเติมคำเกิน</li>
+      <li>ระบบตัดจุดท้ายประโยคและตัวพิมพ์ใหญ่เล็กออกก่อนตรวจ จึงไม่ต้องกังวลสองเรื่องนี้</li>
+    </ul>
+  </div>
+  <div id="ex7"></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">แบบฝึกหัด ชุดที่ 8</div>
+  <h2>เรียงคำให้เป็นประโยค</h2>
+  <p class="lede">กดคำตามลำดับที่ถูกต้อง 5 ข้อ</p>
+  <div class="brief">
+    <div class="bhd">คำชี้แจง</div>
+    <ul>
+        <li>กดคำตามลำดับ คำที่กดแล้วจะจางลงและไปปรากฏบนเส้นด้านบน</li>
+        <li>กดผิดใช้ปุ่มลบคำสุดท้ายย้อนได้ ต้องใช้ครบทุกคำจึงจะกดตรวจได้</li>
+        <li>ข้อละ 1 คะแนน รวม 5 คะแนน</li>
+        <li>ทุกข้อกดได้ครั้งเดียว เมื่อตรวจแล้วระบบจะแสดงคำตอบที่ถูกต้อง คำอธิบาย และข้อควรจำทันที</li>
+    </ul>
+  </div>
+  <div class="tipcard">
+    <div class="thd">เคล็ดลับก่อนเริ่มทำ</div>
+    <ul>
+      <li>เริ่มจากหาประธานก่อน มักเป็นคำที่ขึ้นต้นด้วยอักษรตัวใหญ่</li>
+      <li>จากนั้นหาคำกริยา แล้วค่อยเติมกรรมหรือส่วนขยายตามหลัง</li>
+      <li>คำบุพบทกับคำนามต้องอยู่ติดกันเสมอ เช่น <span class="my">ke perpustakaan</span> แยกกันไม่ได้</li>
+    </ul>
+  </div>
+  <div id="ex8"></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">แบบฝึกหัด ชุดที่ 9</div>
+  <h2>แก้ประโยคที่เขียนผิด</h2>
+  <p class="lede">พิมพ์ประโยคที่แก้แล้ว 5 ข้อ</p>
+  <div class="brief">
+    <div class="bhd">คำชี้แจง</div>
+    <ul>
+        <li>แต่ละข้อมีข้อผิดพลาดหนึ่งจุด โจทย์บอกความหมายภาษาไทยที่ต้องการไว้ให้แล้ว</li>
+        <li>พิมพ์ประโยคที่แก้แล้วทั้งประโยค ข้อที่เกี่ยวกับประโยคสลับที่ต้องใส่จุลภาคด้วย</li>
+        <li>ข้อละ 1 คะแนน รวม 5 คะแนน</li>
+        <li>ทุกข้อกดได้ครั้งเดียว เมื่อตรวจแล้วระบบจะแสดงคำตอบที่ถูกต้อง คำอธิบาย และข้อควรจำทันที</li>
+    </ul>
+  </div>
+  <div class="tipcard">
+    <div class="thd">เคล็ดลับก่อนเริ่มทำ</div>
+    <ul>
+      <li>อ่านความหมายภาษาไทยที่โจทย์ให้ก่อน แล้วเทียบว่าประโยคเดิมสื่อความนั้นได้หรือไม่</li>
+      <li>ข้อผิดพลาดในชุดนี้มีสามแบบ ลำดับคำหลักกับคำขยาย กรรมขาด และจุลภาคขาด</li>
+      <li>พิมพ์ให้ครบทั้งประโยค ไม่ใช่พิมพ์เฉพาะคำที่แก้</li>
+    </ul>
+  </div>
+  <div id="ex9"></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">แบบฝึกหัด ชุดที่ 10</div>
+  <h2>แยกส่วนประกอบของประโยค</h2>
+  <p class="lede">ระบุหน้าที่ของแต่ละส่วน 10 ข้อ</p>
+  <div class="brief">
+    <div class="bhd">คำชี้แจง</div>
+    <ul>
+        <li>กดปุ่มหน้าที่ที่ต้องการก่อน ปุ่มที่เลือกอยู่จะเป็นสีเข้ม จากนั้นกดที่ส่วนของประโยค</li>
+        <li>กดซ้ำเพื่อเปลี่ยนหน้าที่ได้จนกว่าจะกดตรวจ ต้องระบุครบทุกส่วนจึงจะตรวจได้</li>
+        <li>ตอบถูกครบทุกส่วนจึงได้คะแนน ข้อละ 1 คะแนน รวม 10 คะแนน</li>
+        <li>ทุกข้อกดได้ครั้งเดียว เมื่อตรวจแล้วระบบจะแสดงคำตอบที่ถูกต้อง คำอธิบาย และข้อควรจำทันที</li>
+    </ul>
+  </div>
+  <div class="tipcard">
+    <div class="thd">เคล็ดลับก่อนเริ่มทำ</div>
+    <ul>
+      <li>หาคำกริยาให้เจอก่อน ทุกอย่างทางซ้ายของกริยาคือภาคประธาน</li>
+      <li>สิ่งที่อยู่หลังกริยา ให้ถามว่าตัดออกได้หรือไม่ ถ้าตัดได้คือ Keterangan</li>
+      <li>ถ้าตัดไม่ได้ ให้ดูชนิดกริยา สกรรมกริยาตามด้วย Objek ส่วนอกรรมกริยาตามด้วย Pelengkap</li>
+    </ul>
+  </div>
+  <div id="ex10"></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">แบบฝึกหัด ชุดที่ 11</div>
+  <h2>เขียนภาษามลายูจากภาษาไทย</h2>
+  <p class="lede">อ่านประโยคภาษาไทยแล้วเขียนเป็นภาษามลายู 10 ข้อ</p>
+  <div class="brief">
+    <div class="bhd">คำชี้แจง</div>
+    <ul>
+        <li>อ่านประโยคภาษาไทย ดูคำใบ้ใต้โจทย์ว่าควรใช้คำใด แล้วพิมพ์เป็นประโยคภาษามลายู</li>
+        <li>ไม่ต้องใส่จุดท้ายประโยค ตัวพิมพ์ใหญ่เล็กไม่มีผล บางข้อรับคำตอบได้มากกว่าหนึ่งรูป</li>
+        <li>ข้อละ 1 คะแนน รวม 10 คะแนน</li>
+        <li>ทุกข้อกดได้ครั้งเดียว เมื่อตรวจแล้วระบบจะแสดงคำตอบที่ถูกต้อง คำอธิบาย และข้อควรจำทันที</li>
+    </ul>
+  </div>
+  <div class="tipcard">
+    <div class="thd">เคล็ดลับก่อนเริ่มทำ</div>
+    <ul>
+      <li>เรียงคำเหมือนภาษาไทยได้เกือบทั้งหมด แต่ห้ามเติมคำที่แปลว่าเป็นหรืออยู่</li>
+      <li>ก่อนส่งคำตอบ ถามตัวเองว่ากริยาที่ใช้ต้องมีกรรมหรือไม่</li>
+      <li>คำแสดงความเป็นเจ้าของอย่าง <span class="my">saya</span> และปัจจัย <span class="my">-nya</span> ต้องตามหลังคำนามเสมอ</li>
+    </ul>
+  </div>
+  <div id="ex11"></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">ผลคะแนน</div>
+  <h2>สรุปผลการทำแบบฝึกหัด</h2>
+  <div class="score">
+    <div class="n"><span id="sc">0</span> / <span id="tt">63</span></div>
+    <div class="l">ตอบแล้ว <span id="done">0</span> ข้อ</div>
+    <div class="msg" id="msg">เริ่มทำแบบฝึกหัดได้จากสไลด์ก่อนหน้า</div>
+  </div>
+  <div class="endnav">
+    <button class="nav" onclick="restartAll()">เริ่มเรียนใหม่ตั้งแต่หน้าแรก</button>
+    <button class="nav ghost" onclick="resetAll()">ล้างคำตอบ ทำแบบฝึกหัดใหม่</button>
+    <button class="nav ghost" onclick="show(16)">กลับไปข้อแรกของแบบฝึกหัด</button>
+  </div>
+  <p style="text-align:center;margin-top:14px;font-size:14.5px;color:var(--muted)">ทบทวนเนื้อหาอีกครั้งได้จากสไลด์สรุปหกข้อ หรือกดจุดด้านล่างเพื่อข้ามไปหน้าที่ต้องการ</p>
+</section>
+
+</div></main>
+
+<footer>
+  <div class="ft">
+    <button class="nav ghost" id="prev" onclick="go(-1)">ย้อนกลับ</button>
+    <div class="dots" id="dots"></div>
+    <span class="hint">ใช้ปุ่มลูกศรซ้ายขวาเลื่อนสไลด์ได้</span>
+    <button class="nav" id="next" onclick="go(1)">ถัดไป</button>
+  </div>
+</footer>
+
+<script>
+const BANK = {
+  ex1:{type:'mcq',items:[
+    {q:'<span class="my">Pelajar yang sedang menulis karangan itu menjawab tajuk kedua.</span>',
+     o:['Pelajar yang sedang menulis karangan itu','menjawab tajuk kedua','yang sedang menulis karangan','tajuk kedua'],a:0,
+     e:'ภาคประธานคือนามวลีทั้งก้อน คำหลักคือ <span class="my">pelajar</span> ส่วน <span class="my">yang sedang menulis karangan itu</span> เป็นอนุประโยคขยายที่ยังนับรวมอยู่ในภาคประธาน ภาคแสดงเริ่มที่คำกริยา <span class="my">menjawab</span>',
+     tip:'อย่าตัดภาคประธานตรงคำว่า <span class="my">yang</span> เพราะทุกอย่างที่ตามหลัง yang ยังขยายคำหลักเดิมอยู่'},
+    {q:'<span class="my">Penyanyi ini sangat terkenal di negara kita.</span>',
+     o:['sangat terkenal','Penyanyi ini','di negara kita','terkenal di negara kita'],a:1,
+     e:'<span class="my">Penyanyi ini</span> เป็นนามวลีทำหน้าที่ประธาน คำหลักคือ penyanyi ส่วน ini เป็นคำชี้เฉพาะ ที่เหลือทั้งหมดเป็นภาคแสดงที่เป็นคุณศัพท์วลี',
+     tip:'คำชี้เฉพาะ <span class="my">ini</span> และ <span class="my">itu</span> ตามหลังคำนามเสมอ และยังนับอยู่ในภาคประธาน'},
+    {q:'<span class="my">Pelumba-pelumba basikal yang sedang berlatih itu dari Pusat Sukan Negara.</span>',
+     o:['dari Pusat Sukan Negara','yang sedang berlatih itu','Pelumba-pelumba basikal yang sedang berlatih itu','Pusat Sukan Negara'],a:2,
+     e:'คำซ้ำ <span class="my">pelumba-pelumba</span> เป็นคำหลัก มีทั้ง basikal และอนุประโยค yang มาขยาย ทั้งหมดยังเป็นภาคประธาน ภาคแสดงเริ่มที่คำบุพบท <span class="my">dari</span>',
+     tip:'ประโยคนี้ภาคแสดงเป็นบุพบทวลี จึงเป็นรูปแบบ FN + FS ไม่มีคำกริยาเลย'},
+    {q:'<span class="my">Adik bongsuku sedang tidur di serambi rumah.</span>',
+     o:['sedang tidur','Adik bongsuku','di serambi rumah','sedang tidur di serambi rumah'],a:1,
+     e:'<span class="my">Adik bongsuku</span> คือประธาน คำหลักคือ adik ส่วน bongsuku ขยาย ส่วน <span class="my">sedang tidur di serambi rumah</span> เป็นกริยาวลีทำหน้าที่ภาคแสดง',
+     tip:'ปัจจัย <span class="my">-ku</span> ท้ายคำแปลว่าของฉัน จึงเป็นคำขยายที่อยู่ในภาคประธาน'}
+  ]},
+  ex2:{type:'mcq',items:[
+    {q:'<span class="my">Abang Lukman doktor gigi.</span>',o:['FN + FN','FN + FK','FN + FA','FN + FS'],a:0,
+     e:'ภาคแสดง <span class="my">doktor gigi</span> เป็นนามวลี คำหลักคือ doktor ส่วน gigi เป็น penerang nama บอกสาขา สังเกตว่าประโยคนี้ไม่มีกริยาเลย',
+     tip:'ภาษามลายูไม่ต้องมีคำว่าเป็น ประโยคจบความได้ด้วยนามวลีสองก้อนเรียงกัน'},
+    {q:'<span class="my">Kami pergi ke perpustakaan.</span>',o:['FN + FN','FN + FK','FN + FA','FN + FS'],a:1,
+     e:'คำหลักของภาคแสดงคือกริยา <span class="my">pergi</span> ส่วน <span class="my">ke perpustakaan</span> เป็นคำขยายที่ตามมา ทั้งก้อนจึงเป็นกริยาวลี',
+     tip:'อย่าเห็นคำบุพบท ke แล้วรีบตอบ FN + FS ต้องดูว่าคำแรกของภาคแสดงเป็นชนิดใด'},
+    {q:'<span class="my">Kelas ini bersih dan selesa.</span>',o:['FN + FN','FN + FK','FN + FA','FN + FS'],a:2,
+     e:'<span class="my">bersih</span> และ <span class="my">selesa</span> เป็นคำคุณศัพท์ทั้งคู่ เชื่อมด้วย <span class="my">dan</span> ทั้งก้อนจึงเป็นคุณศัพท์วลี',
+     tip:'คุณศัพท์สองคำที่เชื่อมด้วย dan ยังนับเป็นวลีเดียว ไม่ได้ทำให้เป็นสองประโยค'},
+    {q:'<span class="my">Berita itu tentang tsunami.</span>',o:['FN + FN','FN + FK','FN + FA','FN + FS'],a:3,
+     e:'<span class="my">tentang</span> เป็นคำบุพบท ตามด้วยนามวลี <span class="my">tsunami</span> ภาคแสดงจึงเป็นบุพบทวลี',
+     tip:'บุพบทวลีไม่ได้บอกแค่สถานที่ ยังบอกเรื่องราวได้ด้วย เช่น tentang แปลว่าเกี่ยวกับ'},
+    {q:'<span class="my">Padi menguning.</span>',o:['FN + FN','FN + FK','FN + FA','FN + FS'],a:1,
+     e:'<span class="my">menguning</span> มาจากคำคุณศัพท์ <span class="my">kuning</span> เติมอุปสรรค meN- กลายเป็นคำกริยาที่แปลว่าเริ่มเหลือง ภาคแสดงจึงเป็นกริยาวลี',
+     tip:'ดูรูปคำก่อนดูความหมาย คำที่ขึ้นต้นด้วย me- men- meng- mem- เกือบทั้งหมดเป็นคำกริยา'}
+  ]},
+  ex3:{type:'mcq',items:[
+    {q:'คำหลักของวลี <span class="my">sedang makan nasi</span> คือคำใด',o:['sedang','makan','nasi','sedang makan'],a:1,
+     e:'<span class="my">makan</span> เป็นกริยาหลักที่บอกการกระทำ ส่วน <span class="my">sedang</span> ขยายกาล และ <span class="my">nasi</span> เป็นกรรม ตัด makan ออกวลีจะไม่เหลือแกน',
+     tip:'ในกริยาวลี คำหลักคือคำกริยาเสมอ ไม่ใช่คำที่อยู่หน้าสุด'},
+    {q:'คำหลักของวลี <span class="my">sangat besar</span> คือคำใด',o:['sangat','besar','ทั้งสองคำ','ไม่มีคำหลัก'],a:1,
+     e:'<span class="my">besar</span> เป็นความหมายหลัก ส่วน <span class="my">sangat</span> เป็น kata penguat ที่ขยายระดับความเข้ม ตัด sangat ออกยังเหลือความหมายเดิม',
+     tip:'คำที่ตัดออกแล้วความหมายหลักยังอยู่ คือคำขยาย ไม่ใช่คำหลัก'},
+    {q:'ในวลี <span class="my">bumbung sekolah</span> คำใดเป็นคำหลัก',o:['bumbung','sekolah','ทั้งสองคำเท่ากัน','ขึ้นกับบริบท'],a:0,
+     e:'คำหลักมาก่อนเสมอ วลีนี้พูดถึงหลังคา ไม่ได้พูดถึงโรงเรียน <span class="my">sekolah</span> จึงเป็น penerang nama บอกความเป็นเจ้าของ',
+     tip:'แปลกลับเป็นไทยแล้วดูว่าคำใดเป็นคำตั้งต้น หลังคาของโรงเรียน คำตั้งต้นคือหลังคา'},
+    {q:'ในวลี <span class="my">di atas meja</span> ข้อใดอธิบายได้ถูกต้องที่สุด',
+     o:['di เป็นแกนความหมายของวลี','meja เป็นแกนความหมาย ส่วน di เป็นหน่วยที่ต้องปรากฏ','atas เป็นคำหลัก','วลีนี้ไม่มีคำหลัก'],a:1,
+     e:'บุพบทวลีต่างจากวลีอีกสามชนิด <span class="my">di</span> เป็นคำหน้าที่ที่ขาดไม่ได้ เรียกว่า unsur wajib แต่ตัวที่มีน้ำหนักทางความหมายคือคำนาม <span class="my">meja</span>',
+     tip:'จำแยกไว้ว่า สามวลีแรกใช้หลัก inti นำหน้า penerang แต่บุพบทวลีเป็นคำหน้าที่นำหน้านามวลี'}
+  ]},
+  ex4:{type:'mcq',items:[
+    {q:'<span class="my">Kesihatan saya beransur <u>baik</u>.</span>',o:['Pelengkap ส่วนเติมเต็ม','Keterangan ส่วนขยาย','Objek กรรม','Penerang คำขยายคำหลัก'],a:0,
+     e:'ตัด <span class="my">baik</span> ออกแล้วเหลือ <span class="my">Kesihatan saya beransur</span> ซึ่งไม่จบความ จึงเป็น pelengkap kata adjektif',
+     tip:'กริยา <span class="my">beransur</span> ไม่รับกรรม แต่บังคับต้องมีส่วนเติมเต็ม จำคู่กันไว้'},
+    {q:'<span class="my">Dia berjalan <u>dengan cepat</u>.</span>',o:['Pelengkap ส่วนเติมเต็ม','Keterangan ส่วนขยาย','Objek กรรม','Inti คำหลัก'],a:1,
+     e:'ตัดออกแล้ว <span class="my">Dia berjalan</span> ยังจบความ และย้ายไปต้นประโยคเป็น <span class="my">Dengan cepat dia berjalan</span> ได้ จึงเป็นส่วนขยาย',
+     tip:'ใช้สองเกณฑ์คู่กัน ตัดออกได้ไหม และย้ายที่ได้ไหม ถ้าได้ทั้งสองอย่างคือ keterangan'},
+    {q:'<span class="my">Abang saya bekerja <u>di Songkhla</u>.</span>',o:['Pelengkap ส่วนเติมเต็ม','Keterangan ส่วนขยาย','Objek กรรม','Penerang คำขยายคำหลัก'],a:0,
+     e:'ตามเอกสารต้นทาง <span class="my">bekerja</span> ในบริบทนี้จัดเป็นกริยาที่ต้องมีส่วนเติมเต็ม ตัด <span class="my">di Songkhla</span> ออกแล้วความหมายไม่ครบว่าทำงานที่ใด',
+     tip:'ข้อนี้เป็นจุดที่ตำรายังถกเถียงกัน เพราะ <span class="my">Ramai wanita bekerja di kilang</span> กลับถูกจัดเป็น keterangan ให้ยึดตามตำราที่อาจารย์ผู้สอนใช้'},
+    {q:'<span class="my">Pelancong itu tiba <u>malam tadi</u>.</span>',o:['Pelengkap ส่วนเติมเต็ม','Keterangan ส่วนขยาย','Objek กรรม','Subjek ภาคประธาน'],a:1,
+     e:'บอกเวลาและย้ายไปต้นประโยคได้เป็น <span class="my">Malam tadi pelancong itu tiba.</span> จึงเป็นส่วนขยาย',
+     tip:'ส่วนขยายไม่จำเป็นต้องเป็นบุพบทวลีเสมอไป ข้อนี้เป็นนามวลีบอกเวลา'}
+  ]},
+  ex5:{type:'mcq',items:[
+    {q:'<span class="my">Ali membelikan adiknya sehelai baju.</span> คำใดเป็นกรรมตรง',o:['Ali','adiknya','sehelai baju','membelikan'],a:1,
+     e:'<span class="my">adiknya</span> รับการกระทำโดยตรงจากกริยา จึงเป็น objek tepat ส่วน <span class="my">sehelai baju</span> เป็นกรรมตัวที่สองคือ objek sipi',
+     tip:'กรรมตรงคือกรรมตัวแรกที่ตามหลังกริยาทันที ไม่ใช่สิ่งของที่ถูกซื้อ'},
+    {q:'<span class="my">Ibu memasakkan ayah makanan.</span> คำใดเป็นกรรมรอง',o:['Ibu','ayah','makanan','memasakkan'],a:2,
+     e:'กรรมตัวที่สองคือ <span class="my">makanan</span> ซึ่งรับการกระทำโดยอ้อมสืบเนื่องจากกรรมตรง จึงเป็น objek sipi',
+     tip:'กริยาที่ลงท้ายด้วย -kan มักรับกรรมสองตัว เช่น membelikan memasakkan menjahitkan'},
+    {q:'<span class="my">Amat rajin dan cekap pula, pegawai kanan pejabat itu.</span> ประโยคนี้เรียงแบบใด',o:['Susunan biasa','Susunan songsang','ไม่ใช่ประโยคสมบูรณ์','เป็นวลี ไม่ใช่ประโยค'],a:1,
+     e:'ภาคแสดงถูกย้ายมาไว้หน้า และมีจุลภาคคั่นก่อนภาคประธาน จึงเป็น susunan songsang',
+     tip:'จุลภาคคือเครื่องหมายบอกว่าเป็นประโยคสลับที่ ขาดจุลภาคถือว่าเขียนผิด'},
+    {q:'<span class="my">Pada hari ini, bermula peperiksaan akhir semester.</span> ข้อใดถูกต้อง',
+     o:['เป็น susunan songsang เพราะภาคแสดงอยู่หน้า','เป็นการย้าย keterangan มาไว้ต้นประโยค','เป็น susunan biasa ตามปกติ','ประโยคนี้ผิดไวยากรณ์'],a:1,
+     e:'<span class="my">Pada hari ini</span> เป็นส่วนขยายบอกเวลา ไม่ใช่ภาคแสดง การย้ายส่วนขยายมาไว้หน้าเป็นคนละเรื่องกับการสลับประธานกับภาคแสดง',
+     tip:'ถามตัวเองก่อนว่าสิ่งที่อยู่หน้าจุลภาคคือภาคแสดงจริงหรือเป็นเพียงส่วนขยาย'}
+  ]},
+  ex6:{type:'mcq',items:[
+    {q:'วลี <span class="my">Melayu bahasa</span> ที่ต้องการสื่อความหมายว่า ภาษามลายู',o:['ถูก','ผิด'],a:1,
+     e:'ต้องเป็น <span class="my">bahasa Melayu</span> เพราะคำหลักมาก่อนคำขยายเสมอ วลีนี้พูดถึงภาษา ไม่ได้พูดถึงชาวมลายู',
+     tip:'นักเรียนที่เคยเรียนภาษาอังกฤษมักเรียงแบบ Malay language ซึ่งกลับด้านกับภาษามลายู'},
+    {q:'<span class="my">Rajin pelajar itu.</span> ที่ต้องการเขียนเป็นประโยคสลับที่',o:['ถูก','ผิด'],a:1,
+     e:'ประโยคสลับที่ต้องมีจุลภาคคั่นระหว่างภาคแสดงกับภาคประธานเสมอ ที่ถูกคือ <span class="my">Rajin, pelajar itu.</span>',
+     tip:'ถ้าไม่ใส่จุลภาค ผู้อ่านจะเข้าใจว่า rajin ขยาย pelajar กลายเป็นวลี ไม่ใช่ประโยค'},
+    {q:'<span class="my">Abang membeli.</span>',o:['ถูก','ผิด'],a:1,
+     e:'<span class="my">membeli</span> เป็นสกรรมกริยาที่ต้องมีกรรมมารองรับ ที่ถูกคือ <span class="my">Abang membeli baju.</span>',
+     tip:'กริยาที่ขึ้นต้นด้วย mem- men- meng- ส่วนใหญ่เป็นสกรรมกริยา ต้องเช็กว่ามีกรรมหรือยัง'},
+    {q:'<span class="my">Kesihatan saya beransur.</span>',o:['ถูก','ผิด'],a:1,
+     e:'<span class="my">beransur</span> ไม่ต้องการกรรมแต่ต้องมีส่วนเติมเต็ม ที่ถูกคือ <span class="my">Kesihatan saya beransur baik.</span>',
+     tip:'ไม่มีกรรม ไม่ได้แปลว่าจบประโยคได้ทันที ต้องดูว่ากริยานั้นต้องการ pelengkap หรือไม่'},
+    {q:'<span class="my">Emaknya di hospital Yala.</span>',o:['ถูก','ผิด'],a:0,
+     e:'ถูกต้องแล้ว เป็นรูปแบบ FN + FS ภาคแสดงเป็นบุพบทวลี ไม่ต้องมีกริยาเชื่อม',
+     tip:'อย่าเติมคำว่า ada หรือ adalah เข้าไป เพราะภาษามลายูไม่ต้องมีกริยาในโครงสร้างนี้'},
+    {q:'<span class="my">Malam tadi pelancong itu tiba.</span>',o:['ถูก','ผิด'],a:0,
+     e:'ถูกต้องแล้ว ส่วนขยายบอกเวลาย้ายมาไว้ต้นประโยคได้ ประโยคยังสมบูรณ์',
+     tip:'ส่วนขยายเป็นหน่วยเดียวที่ย้ายตำแหน่งได้อิสระ ต่างจากกรรมที่ย้ายไม่ได้'}
+  ]},
+  ex7:{type:'fill',items:[
+    {q:'เติมคำขยายให้วลีมีความหมายว่า หนังสือนิทาน',hint:'<span class="my">buku ______</span>',a:['cerita'],sol:'cerita',
+     e:'ได้เป็น <span class="my">buku cerita</span> คำหลักคือ <span class="my">buku</span> ส่วน <span class="my">cerita</span> เป็น penerang nama บอกชนิดของหนังสือ',
+     tip:'ถ้าเรียงกลับเป็น cerita buku จะแปลว่าเรื่องของหนังสือ ซึ่งผิดความหมายที่ต้องการ'},
+    {q:'เติมคำบุพบทให้ประโยคมีความหมายว่า แม่ของเขาอยู่ที่โรงพยาบาลยะลา',hint:'<span class="my">Emaknya ______ hospital Yala.</span>',a:['di'],sol:'di',
+     e:'ใช้ <span class="my">di</span> เพราะบอกตำแหน่งที่อยู่แล้ว ไม่ได้กำลังเดินทางไป',
+     tip:'<span class="my">di</span> คืออยู่ที่ <span class="my">ke</span> คือไปยัง <span class="my">dari</span> คือมาจาก จำสามคำนี้คู่กัน'},
+    {q:'ระบุคำหลักของวลี <span class="my">pelumba-pelumba basikal</span>',hint:'พิมพ์เฉพาะคำหลัก',a:['pelumba-pelumba','pelumba pelumba','pelumba'],sol:'pelumba-pelumba',
+     e:'คำหลักคือ <span class="my">pelumba-pelumba</span> ซึ่งเป็นคำซ้ำแสดงพหูพจน์ ส่วน <span class="my">basikal</span> เป็น penerang nama บอกชนิด',
+     tip:'คำซ้ำ kata ganda นับเป็นคำเดียว ไม่ต้องแยกว่าคำใดเป็นหลัก'},
+    {q:'ระบุกรรมตรงในประโยค <span class="my">Ibu memasakkan ayah makanan.</span>',hint:'พิมพ์เฉพาะคำที่เป็นกรรมตรง',a:['ayah'],sol:'ayah',
+     e:'กรรมตัวแรกคือ <span class="my">ayah</span> เป็น objek tepat ส่วน <span class="my">makanan</span> เป็น objek sipi',
+     tip:'อย่าสับสนกับภาษาไทยที่พูดว่าแม่ทำอาหารให้พ่อ ในภาษามลายูผู้รับมาก่อนสิ่งของ'},
+    {q:'เขียนวลีภาษามลายูที่แปลว่า บ้านของฉัน',hint:'สองคำ',a:['rumah saya'],sol:'rumah saya',
+     e:'<span class="my">rumah saya</span> คำหลักมาก่อน คำแสดงความเป็นเจ้าของตามหลัง',
+     tip:'ภาษาอังกฤษเรียง my house แต่ภาษามลายูเรียงเหมือนภาษาไทยคือบ้านของฉัน'},
+    {q:'เติมส่วนเติมเต็มให้ประโยคมีความหมายว่า สุขภาพของฉันเริ่มดีขึ้น',hint:'<span class="my">Kesihatan saya beransur ______.</span>',a:['baik'],sol:'baik',
+     e:'<span class="my">baik</span> เป็น pelengkap kata adjektif ตัดออกไม่ได้เพราะกริยา <span class="my">beransur</span> จะไม่จบความ',
+     tip:'อย่าตอบ bagus เพราะ bagus ใช้ชมสิ่งของหรือผลงาน ส่วน baik ใช้กับสุขภาพและความประพฤติ'}
+  ]},
+  ex8:{type:'order',items:[
+    {q:'เรียงเป็นประโยคที่แปลว่า น้องกำลังอ่านหนังสือ',w:['buku','Adik','membaca','sedang'],a:'Adik sedang membaca buku',
+     e:'ประธาน <span class="my">Adik</span> ตามด้วยกริยาวลี <span class="my">sedang membaca buku</span>',
+     tip:'คำบอกกาล sedang อยู่หน้ากริยาหลักเสมอ ต่างจากภาษาไทยที่ใช้คำว่ากำลังนำหน้าเหมือนกัน'},
+    {q:'เรียงเป็นประโยคที่แปลว่า พวกเราไปห้องสมุด',w:['perpustakaan','pergi','Kami','ke'],a:'Kami pergi ke perpustakaan',
+     e:'รูปแบบ FN + FK คำหลักของภาคแสดงคือ <span class="my">pergi</span> ตามด้วยบุพบทวลีบอกจุดหมาย',
+     tip:'ใช้ ke ไม่ใช่ di เพราะเป็นการเคลื่อนที่ไปยังที่แห่งนั้น'},
+    {q:'เรียงเป็นประโยคที่แปลว่า พี่ชายของฉันทำงานที่สงขลา',w:['Songkhla','saya','bekerja','Abang','di'],a:'Abang saya bekerja di Songkhla',
+     e:'ประธานคือ <span class="my">Abang saya</span> คำหลักมาก่อนคำแสดงความเป็นเจ้าของ ส่วน <span class="my">di Songkhla</span> เป็นส่วนเติมเต็ม',
+     tip:'คำสรรพนามแสดงความเป็นเจ้าของ saya ต้องตามหลังคำนามที่ถูกครอบครอง'},
+    {q:'เรียงเป็นประโยคที่แปลว่า พี่ลุกมานเป็นทันตแพทย์',w:['gigi','Lukman','doktor','Abang'],a:'Abang Lukman doktor gigi',
+     e:'รูปแบบ FN + FN ไม่มีกริยาเชื่อม และในวลี <span class="my">doktor gigi</span> คำหลักคือ doktor',
+     tip:'อย่าเติมคำว่า adalah เข้าไป ประโยคแบบนี้จบความได้โดยไม่ต้องมีกริยา'},
+    {q:'เรียงเป็นประโยคที่แปลว่า เขาเดินอย่างรวดเร็ว',w:['cepat','berjalan','dengan','Dia'],a:'Dia berjalan dengan cepat',
+     e:'<span class="my">dengan cepat</span> เป็นส่วนขยายบอกอาการ ตัดออกแล้วประโยคยังจบความ',
+     tip:'บอกอาการว่าทำอย่างไร ใช้ dengan นำหน้าคำคุณศัพท์'}
+  ]},
+  ex9:{type:'fill',items:[
+    {q:'แก้ประโยคนี้ <span class="my">Melayu bahasa itu mudah.</span>',hint:'พิมพ์ประโยคที่แก้แล้วทั้งประโยค',a:['bahasa melayu itu mudah'],sol:'Bahasa Melayu itu mudah.',
+     e:'ผิดที่การเรียงคำในนามวลี คำหลักคือ <span class="my">bahasa</span> ต้องมาก่อนคำขยาย <span class="my">Melayu</span>',
+     tip:'ชื่อภาษาและชื่อชนชาติในภาษามลายูขึ้นต้นด้วยอักษรตัวใหญ่เสมอ'},
+    {q:'แก้ประโยคนี้ <span class="my">Abang membeli.</span> ต้องการสื่อว่า พี่ชายซื้อเสื้อ',hint:'พิมพ์ประโยคที่แก้แล้วทั้งประโยค',a:['abang membeli baju'],sol:'Abang membeli baju.',
+     e:'ผิดที่ขาดกรรม สกรรมกริยา <span class="my">membeli</span> ต้องมีกรรมมารองรับจึงจะจบความ',
+     tip:'ทดสอบง่าย ๆ ด้วยการถามว่าซื้ออะไร ถ้าตอบไม่ได้จากประโยค แปลว่าขาดกรรม'},
+    {q:'แก้ประโยคนี้ <span class="my">Rajin pelajar itu.</span> ต้องการเขียนเป็นประโยคสลับที่',hint:'พิมพ์ประโยคที่แก้แล้ว อย่าลืมเครื่องหมายจุลภาค',a:['rajin, pelajar itu'],sol:'Rajin, pelajar itu.',
+     e:'ผิดที่ขาดเครื่องหมายจุลภาค ประโยคสลับที่ต้องมีจุลภาคคั่นระหว่างภาคแสดงกับภาคประธานเสมอ',
+     tip:'ถ้าตอบถูกทุกคำแต่ไม่ใส่จุลภาค ระบบจะนับว่าผิด เพราะจุลภาคคือหัวใจของโครงสร้างนี้'},
+    {q:'แก้ประโยคนี้ <span class="my">Ali di.</span> ต้องการสื่อว่า อาลีอยู่ที่โรงเรียน',hint:'พิมพ์ประโยคที่แก้แล้วทั้งประโยค',a:['ali di sekolah'],sol:'Ali di sekolah.',
+     e:'ผิดที่คำบุพบทลอยอยู่โดยไม่มีนามวลีตามหลัง <span class="my">di</span> ต้องมีคำนามบอกสถานที่เสมอ',
+     tip:'บุพบทวลีประกอบด้วยคำบุพบทบวกนามวลี ขาดส่วนใดส่วนหนึ่งไม่ได้'},
+    {q:'แก้ประโยคนี้ <span class="my">Saya rumah besar.</span> ต้องการสื่อว่า บ้านของฉันใหญ่',hint:'พิมพ์ประโยคที่แก้แล้วทั้งประโยค',a:['rumah saya besar'],sol:'Rumah saya besar.',
+     e:'ผิดที่การเรียงคำในภาคประธาน ต้องเป็น <span class="my">rumah saya</span> คำหลักมาก่อนคำแสดงความเป็นเจ้าของ',
+     tip:'ประโยคเดิมอ่านได้ว่าฉันคือบ้านหลังใหญ่ ซึ่งผิดความหมายไปคนละเรื่อง'}
+  ]},
+  ex10:{type:'label',items:[
+    {s:[{t:'Ali',r:'S'},{t:'membaca',r:'P'},{t:'buku',r:'O'}],
+     e:'<span class="my">membaca</span> เป็นสกรรมกริยา จึงต้องมีกรรมคือ <span class="my">buku</span> มารองรับ ตัดออกไม่ได้',
+     tip:'โครงสร้างพื้นฐานที่สุดของประโยคที่มีกรรม คือ S + P + O'},
+    {s:[{t:'Abang Lukman',r:'S'},{t:'doktor gigi',r:'P'}],
+     e:'รูปแบบ FN + FN ภาคแสดงเป็นนามวลีทั้งก้อน ไม่มีกริยาและไม่มีกรรม',
+     tip:'อย่าเผลอตอบว่า doktor gigi เป็นกรรม เพราะไม่มีคำกริยาให้รับการกระทำ'},
+    {s:[{t:'Adik bongsuku',r:'S'},{t:'sedang tidur',r:'P'},{t:'di serambi rumah',r:'K'}],
+     e:'<span class="my">tidur</span> เป็นอกรรมกริยา ส่วน <span class="my">di serambi rumah</span> บอกสถานที่และตัดออกได้ จึงเป็นส่วนขยาย',
+     tip:'บุพบทวลีที่ตามหลังอกรรมกริยาส่วนใหญ่เป็น keterangan ไม่ใช่ objek'},
+    {s:[{t:'Kesihatan saya',r:'S'},{t:'beransur',r:'P'},{t:'baik',r:'L'}],
+     e:'ตัด <span class="my">baik</span> ออกแล้วประโยคไม่จบความ จึงเป็น pelengkap ไม่ใช่ keterangan',
+     tip:'จำกริยาที่ต้องมี pelengkap ไว้เป็นชุด เช่น beransur beratapkan menjadi'},
+    {s:[{t:'Dia',r:'S'},{t:'berjalan',r:'P'},{t:'dengan cepat',r:'K'}],
+     e:'ตัด <span class="my">dengan cepat</span> ออกแล้วยังจบความ และย้ายไปต้นประโยคได้ จึงเป็นส่วนขยายบอกอาการ',
+     tip:'เทียบกับข้อก่อนหน้าให้ชัด ทั้งคู่อยู่ท้ายประโยคเหมือนกันแต่คนละหน้าที่'},
+    {s:[{t:'Abang',r:'S'},{t:'membeli',r:'P'},{t:'baju',r:'O'}],
+     e:'<span class="my">membeli</span> ต้องมีกรรม ถ้าตัด <span class="my">baju</span> ออกประโยคจะไม่สมบูรณ์',
+     tip:'สิ่งของที่ถูกซื้อคือผู้ถูกกระทำ จึงเป็นกรรม ไม่ใช่ส่วนขยาย'},
+    {s:[{t:'Ali',r:'S'},{t:'membelikan',r:'P'},{t:'adiknya',r:'O'},{t:'sehelai baju',r:'O'}],
+     e:'ประโยคนี้มีกรรมสองตัว <span class="my">adiknya</span> เป็น objek tepat และ <span class="my">sehelai baju</span> เป็น objek sipi ทั้งคู่นับเป็นกรรม',
+     tip:'ในแบบฝึกหัดนี้กรรมทั้งสองชนิดใช้ป้าย Objek เหมือนกัน ความต่างอยู่ที่ลำดับ'},
+    {s:[{t:'Rumah kawan saya',r:'S'},{t:'beratapkan',r:'P'},{t:'bertam',r:'L'}],
+     e:'<span class="my">beratapkan</span> ต้องมีส่วนเติมเต็มที่เป็นคำนาม เรียกว่า pelengkap kata nama ไม่ใช่กรรม',
+     tip:'คำนามที่ตามหลังกริยาไม่ได้เป็นกรรมเสมอไป ต้องดูว่ากริยานั้นเป็นสกรรมกริยาหรือไม่'},
+    {s:[{t:'Kuliah itu',r:'S'},{t:'tamat',r:'P'},{t:'pada pukul 4.30 petang',r:'K'}],
+     e:'บุพบทวลีบอกเวลา ตัดออกได้และย้ายไปต้นประโยคได้ จึงเป็นส่วนขยาย',
+     tip:'ส่วนขยายบอกเวลาพบบ่อยที่สุดในสามชนิด คือเวลา สถานที่ และอาการ'},
+    {s:[{t:'Penyanyi ini',r:'S'},{t:'sangat terkenal di negara kita',r:'P'}],
+     e:'ภาคแสดงทั้งก้อนเป็นคุณศัพท์วลี คำหลักคือ <span class="my">terkenal</span> ส่วน sangat และ di negara kita เป็นคำขยายภายในวลีเดียวกัน',
+     tip:'บุพบทวลีที่อยู่ภายในคุณศัพท์วลี ยังนับรวมเป็นภาคแสดงก้อนเดียว ไม่แยกเป็น keterangan'}
+  ]},
+  ex11:{type:'fill',items:[
+    {q:'น้องกำลังอ่านหนังสือ',hint:'ใช้ sedang และ membaca',a:['adik sedang membaca buku'],sol:'Adik sedang membaca buku.',
+     e:'ประธาน Adik ตามด้วยกริยาวลี sedang membaca buku คำบอกกาลอยู่หน้ากริยาหลัก',
+     tip:'ถ้าลืมคำว่า buku ประโยคจะขาดกรรม เพราะ membaca เป็นสกรรมกริยา'},
+    {q:'พวกเราไปห้องสมุด',hint:'ใช้ pergi และ ke',a:['kami pergi ke perpustakaan','kita pergi ke perpustakaan'],sol:'Kami pergi ke perpustakaan.',
+     e:'ใช้ ke เพราะบอกทิศทางที่มุ่งไป ไม่ใช่ di ที่บอกตำแหน่งที่อยู่',
+     tip:'kami คือพวกเราที่ไม่รวมผู้ฟัง ส่วน kita คือพวกเราที่รวมผู้ฟังด้วย ข้อนี้ตอบได้ทั้งสองคำ'},
+    {q:'นักเรียนคนนั้นขยัน',hint:'ใช้ pelajar และ rajin',a:['pelajar itu rajin','murid itu rajin'],sol:'Pelajar itu rajin.',
+     e:'รูปแบบ FN + FA ภาคแสดงเป็นคำคุณศัพท์ ไม่ต้องมีกริยาเชื่อม',
+     tip:'คำชี้เฉพาะ itu ต้องอยู่หลังคำนาม จะเขียนว่า itu pelajar ไม่ได้'},
+    {q:'แม่ของเขาอยู่ที่โรงพยาบาลยะลา',hint:'ใช้ emaknya และ hospital Yala',a:['emaknya di hospital yala','ibunya di hospital yala'],sol:'Emaknya di hospital Yala.',
+     e:'รูปแบบ FN + FS ภาคแสดงเป็นบุพบทวลี ไม่ต้องมีคำว่าอยู่',
+     tip:'ปัจจัย -nya แปลว่าของเขา จึงไม่ต้องเขียน emak dia แยกเป็นสองคำ'},
+    {q:'พี่ชายของฉันทำงานที่สงขลา',hint:'ใช้ bekerja และ Songkhla',a:['abang saya bekerja di songkhla'],sol:'Abang saya bekerja di Songkhla.',
+     e:'ประธานคือ abang saya คำหลักมาก่อนคำแสดงความเป็นเจ้าของ ส่วน di Songkhla เป็นส่วนเติมเต็ม',
+     tip:'อย่าเขียน saya abang เพราะจะกลายเป็นความหมายว่าฉันคือพี่ชาย'},
+    {q:'ห้องเรียนนี้สะอาด',hint:'ใช้ kelas และ bersih',a:['kelas ini bersih','bilik darjah ini bersih'],sol:'Kelas ini bersih.',
+     e:'รูปแบบ FN + FA คำชี้เฉพาะ ini ตามหลังคำนามเสมอ',
+     tip:'ini ใช้กับสิ่งที่อยู่ใกล้ผู้พูด ส่วน itu ใช้กับสิ่งที่อยู่ไกลออกไป'},
+    {q:'เขาเดินอย่างรวดเร็ว',hint:'ใช้ berjalan และ dengan',a:['dia berjalan dengan cepat','dia berjalan dengan pantas'],sol:'Dia berjalan dengan cepat.',
+     e:'dengan cepat เป็นส่วนขยายบอกอาการ ตัดออกแล้วประโยคยังจบความ',
+     tip:'cepat และ pantas ใช้แทนกันได้ในความหมายว่ารวดเร็ว'},
+    {q:'พี่ชายซื้อเสื้อ',hint:'ใช้ membeli และ baju',a:['abang membeli baju'],sol:'Abang membeli baju.',
+     e:'รูปแบบ S + P + O สกรรมกริยาต้องมีกรรมตามหลัง',
+     tip:'baju แปลว่าเสื้อ ส่วน seluar แปลว่ากางเกง อย่าสับสนสองคำนี้'},
+    {q:'บ้านของฉันใหญ่',hint:'สามคำ',a:['rumah saya besar'],sol:'Rumah saya besar.',
+     e:'ภาคประธานคือ rumah saya ภาคแสดงคือ besar ซึ่งเป็นคำคุณศัพท์',
+     tip:'ประโยคนี้ประธานยาวสองคำ ทำให้ต้องแยกให้ออกว่า besar ไม่ได้ขยาย saya'},
+    {q:'แมวตัวนั้นนอนหลับ',hint:'ใช้ kucing และ tidur',a:['kucing itu tidur'],sol:'Kucing itu tidur.',
+     e:'รูปแบบ S + P ที่สั้นที่สุดแต่ยังเป็นประโยคสมบูรณ์ เพราะ tidur เป็นอกรรมกริยา',
+     tip:'ไม่ต้องเติมอะไรหลัง tidur เพราะไม่ต้องการทั้งกรรมและส่วนเติมเต็ม'}
+  ]}
+};
+
+const ROLES = {S:'Subjek', P:'Predikat', O:'Objek', L:'Pelengkap', K:'Keterangan'};
+const ROLETH = {S:'ภาคประธาน', P:'ภาคแสดง', O:'กรรม', L:'ส่วนเติมเต็ม', K:'ส่วนขยาย'};
+const ANS = {};
+const ORD = {};
+const PICKED = {};
+const ASSIGN = {};
+const answered = {};
+let TOTAL = 0;
+function setOf(id){ return id.split('-')[0]; }
+
+function norm(s){
+  return s.trim().toLowerCase().replace(/\s+/g,' ').replace(/\s*,\s*/g,', ').replace(/[.!?]+$/,'').trim();
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function head(i,q){ return '<div class="qh"><span class="qn">'+(i+1)+'.</span><span class="qt">'+q+'</span></div>'; }
+
+function fbBox(id,it,sol){
+  let s = '<div class="fb" id="fb-'+id+'">';
+  s += '<div class="fbh" id="fbh-'+id+'"></div>';
+  s += '<div class="fbl"><b>คำตอบที่ถูกต้อง</b> <span class="sol">'+sol+'</span></div>';
+  s += '<div class="fbl"><b>คำอธิบาย</b> '+it.e+'</div>';
+  if(it.tip) s += '<div class="fbl tip"><b>ข้อควรจำ</b> '+it.tip+'</div>';
+  return s + '</div>';
+}
+
+function mark(id, ok, extra){
+  const hd = document.getElementById('fbh-'+id);
+  hd.className = 'fbh ' + (ok ? 'good' : 'bad');
+  hd.innerHTML = '<span class="dot"></span>' + (ok ? 'ตอบถูก' : 'ตอบยังไม่ถูก') + (extra ? '<span class="yours">'+extra+'</span>' : '');
+  document.getElementById('fb-'+id).classList.add('show');
+}
+
+function renderSet(k){
+  const set = BANK[k], host = document.getElementById(k);
+  if(!host) return;
+  host.innerHTML = set.items.map((it,i)=>{
+      const id = k+'-'+i;
+      if(set.type==='mcq'){
+        ANS[id] = {a:it.a};
+        const opts = it.o.map((o,j)=>'<button class="opt" data-q="'+id+'" data-i="'+j+'" data-a="'+it.a+'">'+o+'</button>').join('');
+        return '<div class="qbox">'+head(i,it.q)+'<div class="opts">'+opts+'</div>'+fbBox(id,it,it.o[it.a])+'</div>';
+      }
+      if(set.type==='fill'){
+        const sol = it.sol || it.a[0];
+        ANS[id] = {a:it.a};
+        return '<div class="qbox">'+head(i,it.q)+
+          '<p class="hintth">'+it.hint+'</p>'+
+          '<div class="fillrow"><input class="ans" id="in-'+id+'" data-id="'+id+'" placeholder="พิมพ์คำตอบที่นี่" autocomplete="off">'+
+          '<button class="chk" data-for="'+id+'" onclick="checkFill(this.dataset.for)">ตรวจคำตอบ</button></div>'+
+          '<div class="err" id="er-'+id+'">พิมพ์คำตอบก่อนกดตรวจ</div>'+
+          fbBox(id,it,'<span class="my">'+sol+'</span>')+'</div>';
+      }
+      if(set.type==='order'){
+        ANS[id] = {a:it.a, n:it.w.length};
+        ORD[id] = [];
+        const chips = it.w.map((w,j)=>'<button class="chip" data-id="'+id+'" data-j="'+j+'" onclick="addWord(this)">'+w+'</button>').join('');
+        return '<div class="qbox">'+head(i,it.q)+
+          '<div class="line blank" id="ln-'+id+'">กดคำด้านล่างเรียงเป็นประโยค</div>'+
+          '<div class="chips">'+chips+'</div>'+
+          '<div class="fillrow"><button class="chk alt" data-for="'+id+'" onclick="undoWord(this.dataset.for)">ลบคำสุดท้าย</button>'+
+          '<button class="chk" data-for="'+id+'" onclick="checkOrder(this.dataset.for)">ตรวจคำตอบ</button></div>'+
+          '<div class="err" id="er-'+id+'">เรียงคำให้ครบทุกคำก่อนกดตรวจ</div>'+
+          fbBox(id,it,'<span class="my">'+it.a+'.</span>')+'</div>';
+      }
+      if(set.type==='label'){
+        ANS[id] = {s:it.s};
+        ASSIGN[id] = {};
+        PICKED[id] = 'S';
+        const pal = Object.keys(ROLES).map(r=>
+          '<button class="role'+(r==='S'?' on':'')+'" data-id="'+id+'" data-role="'+r+'" onclick="pickRole(this)">'+ROLES[r]+'</button>').join('');
+        const segs = it.s.map((sg,j)=>
+          '<button class="sg" data-id="'+id+'" data-j="'+j+'" onclick="assignRole(this)">'+
+          '<span class="sw">'+sg.t+'</span><span class="sr" id="sr-'+id+'-'+j+'">?</span></button>').join('');
+        const sol = it.s.map(x=>'<span class="my">'+x.t+'</span> = '+ROLES[x.r]).join(' &middot; ');
+        return '<div class="qbox">'+head(i,'<span class="my">'+it.s.map(x=>x.t).join(' ')+'.</span>')+
+          '<div class="palette">'+pal+'</div><div class="segs">'+segs+'</div>'+
+          '<div class="fillrow"><button class="chk" data-for="'+id+'" onclick="checkLabel(this.dataset.for)">ตรวจคำตอบ</button></div>'+
+          '<div class="err" id="er-'+id+'">กำหนดหน้าที่ให้ครบทุกส่วนก่อนกดตรวจ</div>'+
+          fbBox(id,it,sol)+'</div>';
+      }
+      return '';
+    }).join('')
+    + '<div class="settool"><span class="stat" id="st-'+k+'"></span>'
+    + '<button class="clr" data-set="'+k+'" onclick="resetSet(this.dataset.set)">ล้างคำตอบชุดนี้</button></div>';
+  host.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',pick));
+  host.querySelectorAll('input.ans').forEach(inp=>{
+    inp.addEventListener('input',()=>document.getElementById('er-'+inp.dataset.id).classList.remove('show'));
+    inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); checkFill(inp.dataset.id); } });
+  });
+  setStat(k);
+}
+
+function render(){
+  TOTAL = 0;
+  Object.keys(BANK).forEach(k=>{
+    if(!document.getElementById(k)) return;
+    TOTAL += BANK[k].items.length;
+    renderSet(k);
+  });
+  const t = document.getElementById('tt');
+  if(t) t.textContent = TOTAL;
+}
+
+function setStat(k){
+  const n = BANK[k].items.length;
+  let done = 0, right = 0;
+  for(let i=0;i<n;i++){ const id = k+'-'+i; if(id in answered){ done++; if(answered[id]) right++; } }
+  const el = document.getElementById('st-'+k);
+  if(el) el.innerHTML = done===0 ? 'ยังไม่ได้ทำข้อใดในชุดนี้'
+    : 'ชุดนี้ทำแล้ว <b>'+done+'</b> จาก '+n+' ข้อ ตอบถูก <b>'+right+'</b> ข้อ';
+  const btn = document.querySelector('.clr[data-set="'+k+'"]');
+  if(btn) btn.disabled = (done===0);
+}
+
+function resetSet(k){
+  const n = BANK[k].items.length;
+  for(let i=0;i<n;i++){
+    const id = k+'-'+i;
+    delete answered[id]; delete ASSIGN[id]; delete PICKED[id]; delete ORD[id];
+  }
+  renderSet(k);
+  updateScore();
+}
+
+function lockBtns(id){
+  document.querySelectorAll('button.chk[data-for="'+id+'"]').forEach(b=>b.disabled=true);
+}
+
+function pick(e){
+  const b = e.currentTarget, q = b.dataset.q;
+  if(q in answered) return;
+  const a = +b.dataset.a, i = +b.dataset.i;
+  const ok = (i===a);
+  answered[q] = ok;
+  document.querySelectorAll('.opt[data-q="'+q+'"]').forEach(o=>{
+    o.disabled = true;
+    if(+o.dataset.i===a) o.classList.add('right');
+    else if(o===b) o.classList.add('wrong');
+  });
+  mark(q, ok, ok ? '' : 'สิ่งที่เลือกคือ “'+b.textContent+'”');
+  setStat(setOf(q));
+  updateScore();
+}
+
+function checkFill(id){
+  if(id in answered) return;
+  const inp = document.getElementById('in-'+id);
+  const err = document.getElementById('er-'+id);
+  if(!inp.value.trim()){ err.classList.add('show'); inp.focus(); return; }
+  err.classList.remove('show');
+  const ok = ANS[id].a.some(x=>norm(x)===norm(inp.value));
+  answered[id] = ok;
+  inp.classList.add(ok?'right':'wrong');
+  inp.disabled = true;
+  lockBtns(id);
+  mark(id, ok, ok ? '' : 'สิ่งที่พิมพ์คือ “'+esc(inp.value.trim())+'”');
+  setStat(setOf(id));
+  updateScore();
+}
+
+function addWord(btn){
+  const id = btn.dataset.id;
+  if(id in answered) return;
+  ORD[id].push({w:btn.textContent, j:btn.dataset.j});
+  btn.disabled = true;
+  paintLine(id);
+  document.getElementById('er-'+id).classList.remove('show');
+}
+
+function undoWord(id){
+  if((id in answered) || !ORD[id].length) return;
+  const last = ORD[id].pop();
+  document.querySelector('.chip[data-id="'+id+'"][data-j="'+last.j+'"]').disabled = false;
+  paintLine(id);
+}
+
+function paintLine(id){
+  const ln = document.getElementById('ln-'+id);
+  const txt = ORD[id].map(o=>o.w).join(' ');
+  if(txt){ ln.textContent = txt; ln.classList.remove('blank'); }
+  else { ln.textContent = 'กดคำด้านล่างเรียงเป็นประโยค'; ln.classList.add('blank'); }
+}
+
+function checkOrder(id){
+  if(id in answered) return;
+  const err = document.getElementById('er-'+id);
+  if(ORD[id].length < ANS[id].n){ err.classList.add('show'); return; }
+  err.classList.remove('show');
+  const mine = ORD[id].map(o=>o.w).join(' ');
+  const ok = norm(mine)===norm(ANS[id].a);
+  answered[id] = ok;
+  document.getElementById('ln-'+id).classList.add(ok?'right':'wrong');
+  document.querySelectorAll('.chip[data-id="'+id+'"]').forEach(c=>c.disabled=true);
+  lockBtns(id);
+  mark(id, ok, ok ? '' : 'ลำดับที่เรียงคือ “'+esc(mine)+'”');
+  setStat(setOf(id));
+  updateScore();
+}
+
+function pickRole(btn){
+  const id = btn.dataset.id;
+  if(id in answered) return;
+  PICKED[id] = btn.dataset.role;
+  document.querySelectorAll('.role[data-id="'+id+'"]').forEach(b=>b.classList.toggle('on', b===btn));
+}
+
+function assignRole(btn){
+  const id = btn.dataset.id, j = btn.dataset.j;
+  if(id in answered) return;
+  const r = PICKED[id];
+  ASSIGN[id][j] = r;
+  Object.keys(ROLES).forEach(x=>btn.classList.remove('a-'+x));
+  btn.classList.add('a-'+r);
+  document.getElementById('sr-'+id+'-'+j).textContent = ROLES[r];
+  document.getElementById('er-'+id).classList.remove('show');
+}
+
+function checkLabel(id){
+  if(id in answered) return;
+  const segs = ANS[id].s, err = document.getElementById('er-'+id);
+  if(Object.keys(ASSIGN[id]).length < segs.length){ err.classList.add('show'); return; }
+  err.classList.remove('show');
+  let bad = [];
+  segs.forEach((sg,j)=>{
+    const btn = document.querySelector('.sg[data-id="'+id+'"][data-j="'+j+'"]');
+    const mineR = ASSIGN[id][j];
+    const ok = mineR === sg.r;
+    if(!ok) bad.push(sg.t+' ตอบเป็น '+ROLES[mineR]);
+    btn.classList.add(ok?'ok':'no');
+    btn.disabled = true;
+    document.getElementById('sr-'+id+'-'+j).textContent = ROLES[sg.r];
+    Object.keys(ROLES).forEach(x=>btn.classList.remove('a-'+x));
+    btn.classList.add('a-'+sg.r);
+  });
+  const allOk = bad.length===0;
+  answered[id] = allOk;
+  document.querySelectorAll('.role[data-id="'+id+'"]').forEach(b=>b.disabled=true);
+  lockBtns(id);
+  mark(id, allOk, allOk ? '' : 'ผิด '+bad.length+' ส่วน — '+esc(bad.join(', ')));
+  setStat(setOf(id));
+  updateScore();
+}
+
+function updateScore(){
+  const keys = Object.keys(answered);
+  const n = keys.length;
+  const score = keys.filter(x=>answered[x]).length;
+  document.getElementById('sc').textContent = score;
+  document.getElementById('done').textContent = n;
+  const m = document.getElementById('msg');
+  const pct = n ? score/n : 0;
+  if(n===0) m.textContent = 'เริ่มทำแบบฝึกหัดได้จากสไลด์ก่อนหน้า';
+  else if(n<TOTAL) m.textContent = 'ยังเหลืออีก ' + (TOTAL-n) + ' ข้อ';
+  else if(pct>=0.85) m.textContent = 'เยี่ยมมาก เข้าใจโครงสร้างประโยคได้ครบถ้วน';
+  else if(pct>=0.65) m.textContent = 'ดีแล้ว ลองทบทวนข้อที่ตอบผิดอีกครั้ง';
+  else m.textContent = 'ลองย้อนกลับไปอ่านสไลด์สรุปหกข้อ แล้วทำใหม่อีกครั้ง';
+}
+
+function resetAll(){
+  Object.keys(answered).forEach(k=>delete answered[k]);
+  Object.keys(ASSIGN).forEach(k=>delete ASSIGN[k]);
+  Object.keys(PICKED).forEach(k=>delete PICKED[k]);
+  Object.keys(ORD).forEach(k=>delete ORD[k]);
+  render();
+  updateScore();
+}
+
+function restartAll(){
+  resetAll();
+  show(0);
+}
+
+const slides = [...document.querySelectorAll('.slide')];
+const EX_FROM = 16;
+let cur = 0;
+
+function build(){
+  const d = document.getElementById('dots');
+  d.innerHTML = slides.map((_,i)=>
+    '<button class="dot'+(i>=EX_FROM?' ex':'')+'" data-i="'+i+'" aria-label="ไปสไลด์ที่ '+(i+1)+'"></button>').join('');
+  d.querySelectorAll('.dot').forEach(b=>b.addEventListener('click',()=>show(+b.dataset.i)));
+  document.getElementById('tot').textContent = slides.length;
+}
+
+function show(i){
+  cur = Math.max(0, Math.min(slides.length-1, i));
+  slides.forEach((s,j)=>s.classList.toggle('on', j===cur));
+  document.querySelectorAll('.dot').forEach((b,j)=>b.classList.toggle('on', j===cur));
+  document.getElementById('pos').textContent = cur+1;
+  document.getElementById('bar').style.right = (100 - (cur+1)/slides.length*100) + '%';
+  document.getElementById('prev').disabled = cur===0;
+  document.getElementById('next').disabled = cur===slides.length-1;
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+function go(n){ show(cur+n); }
+
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='BUTTON' && e.key===' ') return;
+  if(e.key==='ArrowRight') go(1);
+  if(e.key==='ArrowLeft') go(-1);
+});
+
+build(); render(); show(0); updateScore();
+</script>
+</body>
+</html>
